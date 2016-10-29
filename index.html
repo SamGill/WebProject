@@ -1,40 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Level.Effort</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
- 	<div class="container">
- 		<nav id="tasksBar">
-  			This section will display the tasks.
-  		</nav>
-  	
-  		<div id="mainSection">
-  			<div id="topButtons">
-  			<span class="leftButtons">
-  				<button id="btn-toggleTasks">toggle</button>
-  			</span>
-  		
-  			<span class="rightButtons">
-  				<button id="btn-account">Account</button>
-    			<button id="btn-about" >About</button>	
-  			</span>
-    		<div>
-				<button id="btn-filter">Filter</button>    		
-    		</div>
-  		</div>
-    	<div id="graph">to be filled later with amazing graph information</div>
-    	<div id="bottomContent">
-    		<p>This is the section that will contain the legend content</p>
-    		<button id="btn-calendar">Calendar</button>
-    	</div>	
-  		</div>
- 	</div> 	
-  	
-  	<script   src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
-  	<script type="text/javascript" src="app.js"></script>
-  </body>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="utf-8">
+		<title>Level.Effort</title>
+		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<nav id="tasksBar" class="col-xs-2">
+					This section will display the tasks.
+				</nav>
+				<div id="mainSection" class="col-xs-10">
+					<div class="container-fluid">
+						<div class="row">
+							<div id="topButtons">
+								<span class="leftButtons col-xs-3">
+									<button id="btn-toggleTasks">
+										toggle
+									</button> </span>
+
+								<span class="rightButtons col-xs-9">
+									<button id="btn-account">
+										Account
+									</button>
+									<button id="btn-about" >
+										About
+									</button> </span>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<button id="btn-filter">
+										Filter
+									</button>
+								</div>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="ct-chart ct-perfect-fourth" id="tasksChart"></div>
+						</div>
+						<div class="row">
+							<div id="bottomContent">
+								<p>
+									This is the section that will contain the legend content
+								</p>
+								<button id="btn-calendar">
+									Calendar
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</body>
 </html>
