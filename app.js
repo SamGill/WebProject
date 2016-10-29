@@ -16,5 +16,5 @@ $(document).ready(function() {
 		// is the actual data object.
 		new Chartist.Line('.ct-chart', data);
 	});
-
+	$("#tasksBar").load("tasksBar.html");
 });
