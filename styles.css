@@ -1,6 +1,8 @@
 body {
 	/*background-color: #75bad1;*/
-	background-color: #6d78ce;
+	background-color: #6d78ce !important;
+	height: 100vh;
+	width: 100vw;
 }
 
 div.container {
@@ -14,9 +16,9 @@ div.container {
 	left: 40%;		
 }
 
-
 #mainSection {
-	
+	/*background-color: #6d78ce;*/
+	height: 100vh;
 }
 
 #tasksChart {
@@ -28,5 +30,18 @@ div.container {
 
 #tasksBar {
     display:none;
+    height: 100%;
 }
 
+.taskRow {
+	font-size: 0.8em;
+}
+
+#btn-addTask {
+	float: right;
+}
+
+#tasksBar {
+	background-color: grey;
+	height: 100vh;
+}
