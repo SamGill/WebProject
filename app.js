@@ -16,5 +16,30 @@ $(document).ready(function() {
 		// is the actual data object.
 		new Chartist.Line('.ct-chart', data);
 	});
-	$("#tasksBar").load("tasksBar.html");
+	$("#tasksBar").load("tasksBar.html", function() {
+		addRow("TestRow", new Date().toDateString(), "2.0 Hours", "1 Hour");
+		$("#tasksTable").on("click", ".taskName, .taskDate, .taskEstimate, .taskProgress", function(event) {
+			event.stopPropagation();
+			var input = $(this).siblings(".task-input");
+			input.show();
+			input.val($(this).text());
+			$(this).hide();
+		});
+		$("#tasksTable").on("keydown", ".task-input", function(event){
+        if(event.which == 13 || event.which == 27){
+            // ENTER or ESCAPE key
+            var input = $(this);
+            var content = $(this).siblings("span"); // TODO: set content correctly
+                    
+            if(event.which == 13){
+                // ENTER was pressed
+                
+                // TODO: set the content from the input
+                content.text(input.val());
+            }  
+            input.hide();
+            content.show();
+        }
+    }); 
+	});
 });
