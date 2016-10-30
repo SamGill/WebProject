@@ -27,7 +27,6 @@ body {
     display:none;
     height: 100vh;
     background-color: grey;
-    /*width:100%;*/
 }
 
 #tasksTable tr {

@@ -11,3 +11,36 @@ function addRow(name, date, estimate, progress) {
 
 	$("#tasksTable").append(html);
 }
+
+function handleTextInput(event, el) {
+	if (event.which == 13 || event.which == 27) {
+		// ENTER or ESCAPE key
+		var input = el;
+		var content = el.siblings("span");
+		// TODO: set content correctly
+
+		if (event.which == 13) {
+			// ENTER was pressed
+
+			// TODO: set the content from the input
+			content.text(input.val());
+		}
+		input.hide();
+		content.show();
+	}
+}
+
+function hideTextInput() {
+	$(".task-input").each(function() {
+		$(this).hide();
+		$(this).siblings("span").show();
+	});
+}
+
+function showInputField(event, el) {
+	event.stopPropagation();
+	var input = el.siblings(".task-input");
+	input.show();
+	input.val(el.text());
+	el.hide();
+}
