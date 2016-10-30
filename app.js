@@ -25,21 +25,33 @@ $(document).ready(function() {
 			input.val($(this).text());
 			$(this).hide();
 		});
-		$("#tasksTable").on("keydown", ".task-input", function(event){
-        if(event.which == 13 || event.which == 27){
-            // ENTER or ESCAPE key
-            var input = $(this);
-            var content = $(this).siblings("span"); // TODO: set content correctly
-                    
-            if(event.which == 13){
-                // ENTER was pressed
-                
-                // TODO: set the content from the input
-                content.text(input.val());
-            }  
-            input.hide();
-            content.show();
-        }
-    }); 
+		$("#tasksTable").on("keydown", ".task-input", function(event) {
+			if (event.which == 13 || event.which == 27) {
+				// ENTER or ESCAPE key
+				var input = $(this);
+				var content = $(this).siblings("span");
+				// TODO: set content correctly
+
+				if (event.which == 13) {
+					// ENTER was pressed
+
+					// TODO: set the content from the input
+					content.text(input.val());
+				}
+				input.hide();
+				content.show();
+			}
+		});
+		
+		$(".task-input").on("click", function(event) {
+			event.stopPropagation();
+		});
+		
+		$("body").on("click", function() {
+			$(".task-input").each(function() {
+				$(this).hide();
+				$(this).siblings("span").show();
+			});
+		});
 	});
 });
