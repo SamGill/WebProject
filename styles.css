@@ -41,6 +41,6 @@ body {
 	display:none;
 }
 
-.active {
-	
+#addTasksDialog {
+	display:none;
 }

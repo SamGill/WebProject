@@ -36,5 +36,28 @@ $(document).ready(function() {
 		$("body").on("click", function() {
 			hideTextInput();
 		});
+		
+		$("#btn-addTask").on("click", function() {
+			$("#addTaskDialog").dialog("open");
+		});
+		
+		$("#addTaskDialog").dialog({
+			autoOpen : true,
+			modal : true,
+			buttons : {
+				"Add Task" : function() {
+					addTask();
+					$(this).dialog("close");
+				},
+				Cancel : function() {
+					$(this).dialog("close");
+				}
+			},
+			close : function() {
+				clearAddTask();				
+			}
+		});
+		
+		
 	});
 });

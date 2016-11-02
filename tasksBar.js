@@ -44,3 +44,17 @@ function showInputField(event, el) {
 	input.val(el.text());
 	el.hide();
 }
+
+function addTask() {
+	//database stuff later probs
+	var name = $("#f-name").val();
+	var date = $("#f-date").val();
+	var time = $("#f-time").val();
+	addRow(name, date, time, "0");
+}
+
+function clearAddTask() {
+	$("#f-name").val("");
+	$("#f-date").val("");
+	$("#f-time").val("");
+}
