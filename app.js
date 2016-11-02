@@ -37,6 +37,9 @@ $(document).ready(function() {
 			hideTextInput();
 		});
 		
+		$( "#f-date" ).datepicker();
+		$(".date-input").datepicker();
+		
 		$("#btn-addTask").on("click", function() {
 			$("#addTaskDialog").dialog("open");
 		});
