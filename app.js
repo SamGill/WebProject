@@ -60,7 +60,5 @@ $(document).ready(function() {
 				clearAddTask();				
 			}
 		});
-		
-		
 	});
 });

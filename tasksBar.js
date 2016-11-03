@@ -5,7 +5,7 @@ function addRow(name, date, estimate, progress) {
 	var estimateHtml = "<div>Time: <span class = 'taskEstimate'>" + String(estimate) + "</span>" + "<input class='task-input' val='" + String(estimate) + "'/></div>";
 	var progressHtml = "<div>Progress: <span class = 'taskProgress'>" + String(progress) + "</span>" + "<input class='task-input' val='" + String(progress) + "'/></div>";
 
-	var sideButtons = "<button>X</button>" + "<br/>" + "<button>Check</button>";
+	var sideButtons = "<button onclick='removeTask(this)'>X</button>" + "<br/>" + "<button>Check</button>";
 
 	var html = "<tr class='taskRow'>" + "<td>" + nameHtml + dateHtml + estimateHtml + progressHtml + "</td>" + "<td>" + sideButtons + "</td>" + "</tr>";
 
@@ -57,4 +57,10 @@ function clearAddTask() {
 	$("#f-name").val("");
 	$("#f-date").val("");
 	$("#f-time").val("");
+}
+
+function removeTask(el) {
+	//probs need php eventually or something
+	
+	el.closest(".taskRow").remove();
 }
