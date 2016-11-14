@@ -27,7 +27,7 @@ $(document).ready(function() {
 		$("#btn-contact").on("click", function() {
 			$(".modal-body").fadeOut('slow', function() {
 				$(".modal-body").replaceWith("<div class=\"modal-body\"><form id=\"emailForm\" method=\"POST\" action =\"email.php\"<div class=\"form-group\"><textarea class=\"form-control\" name=\"emailContent\" rows=\"10\">");
-				$(".modal-body").fadeIn('slow');
+				$(".modal-body").fadeIn('slow').slideDown('slow');
 				//Sets timeout so textbox can appear before focusing
 				setTimeout(function() {
 					$(".form-control").focus();
