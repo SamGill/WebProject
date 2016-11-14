@@ -1,29 +1,7 @@
 <!DOCTYPE html>
-<div class="container-fluid">
-	<div class="row">
-		<div id="topButtons">
-			<span class="leftButtons col-xs-3">
-				<button id="btn-toggleTasks">
-					toggle
-				</button> </span>
 
-			<span class="rightButtons col-xs-9">
-				<button id="btn-account">
-					Account
-				</button>
-				<button id="btn-about" >
-					About
-				</button> </span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<button id="btn-filter">
-				Filter
-			</button>
-		</div>
+<div class="container-fluid">	
 
-	</div>
 	<div class="row">
 		<div class="ct-chart ct-perfect-fourth" id="tasksChart"></div>
 	</div>
@@ -35,6 +13,35 @@
 			<button id="btn-calendar">
 				Calendar
 			</button>
+		</div>
+	</div>
+	<div id="AboutModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close">x</span>
+				<h2>Level.Effort</h2>
+			</div>
+			<div class="modal-body">
+				<center>This web app was created by some passionate developers, just for you!</center>
+
+				<center id="ctr-name">Sam Gill</center>
+				<center id="ctr-name">Jonathan Worobey</center>
+				<center id="ctr-name">Garth Murray</center>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-sm-4 text-center">
+						<button type="button" class="btn btn-danger center-block" id="btn-cancel-contact">Cancel</button>
+					</div>
+					<div class="col-sm-4 text-center" id="col-contact">
+						<button type="button" class="btn btn-danger center-block" id="btn-contact">Contact Us</button>
+					</div>
+					<div class="col-sm-4 text-center">
+						<button type="submit" class="btn btn-danger center-block" id="btn-submit-contact" input id="submit">Submit</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
