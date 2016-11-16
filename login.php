@@ -61,6 +61,7 @@
 	<body>
 	<div class="container">
         <div class="row">
+        	<img src="logo1.png" class="center-block logo">
 			<div class="col-md-6 col-md-offset-3"><br />
 				<?php
 					foreach ($errors as &$value) {

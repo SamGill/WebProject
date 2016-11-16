@@ -50,7 +50,13 @@ function addTask() {
 	var name = $("#f-name").val();
 	var date = $("#f-date").val();
 	var time = $("#f-time").val();
+	
 	addRow(name, date, time, "0");
+	
+	//delete this later, this information should come from the database... I think
+	var t = new Task(name, new Date(date), parseInt(time));
+	tasks.push(t);
+	updateGraph();
 }
 
 function clearAddTask() {
