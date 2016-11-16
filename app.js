@@ -51,7 +51,9 @@ function updateGraph(){
 	for(var i = 0; i < 14; i++){
 		var tempDate = new Date();
 		tempDate.setDate(now.getDate() + i);
-		data.labels[i] = tempDate.getDate() + "/" + (tempDate.getMonth() + 1);
+		data.labels[i] = (tempDate.getMonth() + 1) + "/" + tempDate.getDate();
+		
+		
 	}
 	
 	//setting the bars

@@ -1,7 +1,11 @@
+.mainButton {
+	border-radius: 10px;
+}
 body {
 	/*background-color: #75bad1;*/
 	/* background-color: #6d78ce !important; */
-	background-color: #337099 !important;
+	background-color: #ECECEA !important;
+	
 	height: 90vh;
 	width: 100vw;
 }
@@ -26,7 +30,7 @@ body {
 #tasksBar {
     display:none;
     height: 100vh;
-    background-color: grey;
+    background-color: #74AFAD;
 }
 
 #tasksTable tr {
