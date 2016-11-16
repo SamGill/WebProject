@@ -2,17 +2,15 @@
 	border-radius: 10px;
 }
 body {
-	/*background-color: #75bad1;*/
-	/* background-color: #6d78ce !important; */
 	background-color: #ECECEA !important;
-	
 	height: 90vh;
 	width: 100vw;
+   
 }
 
 /*stuff to do with the main section*/
 #topButtons .rightButtons {
-	left: 40%;		
+	left: 40%;
 }
 
 #mainSection {
@@ -28,13 +26,15 @@ body {
 
 /*Stuff to do with tasksBar*/
 #tasksBar {
-    display:none;
-    height: 100vh;
-    background-color: #74AFAD;
+   display:none;
+   height: 100vh;
+   background-color: #74AFAD;
+   font-family: PT-Sans;
+   font-size: 1.2em;
 }
 
 #tasksTable tr {
-	font-size: 0.8em;
+   
 }
 
 #btn-addTask {

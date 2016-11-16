@@ -11,10 +11,10 @@ class Task {
 	return diffDays;
   }
   getDailyTime(fromHere){
-  	return this.time / this.getDaysLeft(fromHere);
+   return this.time / this.getDaysLeft(fromHere);
   }
   getTime(){
-  	return this.time;
+   return this.time;
   }
 }
 
@@ -207,7 +207,7 @@ $(document).ready(function() {
 		});
 		
 		$("#addTaskDialog").dialog({
-			autoOpen : true,
+			autoOpen : false,
 			modal : true,
 			buttons : {
 				"Add Task" : function() {
@@ -219,7 +219,7 @@ $(document).ready(function() {
 				}
 			},
 			close : function() {
-				clearAddTask();				
+				clearAddTask();
 			}
 		});
 	});
