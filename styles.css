@@ -44,3 +44,9 @@ body {
 #addTasksDialog {
 	display:none;
 }
+
+.ct-label{
+	fill: rgba(0,0,0,.6);
+    color: rgba(0,0,0,.6);
+	font-size: 1.5rem;
+}

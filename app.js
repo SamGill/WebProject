@@ -1,3 +1,91 @@
+class Task {
+  constructor(name, finishDate, time) {
+    this.name = name;
+    this.finishDate = finishDate;
+    this.time = time;
+  }
+  getDaysLeft(fromHere){
+  	//returns the number of hours to work each day based on fromHere and finishDate.
+  	var timeDiff = Math.abs(this.finishDate.getTime() - fromHere.getTime());
+	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	return diffDays;
+  }
+  getDailyTime(fromHere){
+  	return this.time / this.getDaysLeft(fromHere);
+  }
+  getTime(){
+  	return this.time;
+  }
+}
+
+var tasks = [];
+
+function getTasks(){
+	var testDate = new Date(2016, 10, 20, 0, 0, 0, 1);
+	var testTask = new Task("test", testDate, 8);
+	
+	var testDate2 = new Date(2016, 10, 23, 0, 0, 0, 1);
+	var testTask2 = new Task("test2", testDate2, 16);
+	
+	var tasks = [];
+	tasks[0] = testTask;
+	tasks[1] = testTask2;
+	tasks[2] = testTask;
+	return tasks;
+}
+
+function updateGraph(){
+	var now = new Date();
+	
+	data = {
+	  labels: [],
+	  series: []
+	}
+	
+	//initialize the task series
+	for(var i = 0; i < tasks.length; i++){
+		data.series[i] = [];
+	}
+	
+	//setting up the date legend
+	for(var i = 0; i < 14; i++){
+		var tempDate = new Date();
+		tempDate.setDate(now.getDate() + i);
+		data.labels[i] = tempDate.getDate() + "/" + (tempDate.getMonth() + 1);
+	}
+	
+	//setting the bars
+	for(var i = 0; i < tasks.length; i++)
+	{
+		for(var j = 0; j < 14; j++)
+		{
+			data.series[i][j] = tasks[i].getTime() - (tasks[i].getDailyTime(now) * j);
+			if(data.series[i][j] < 0){
+				data.series[i][j] = 0;
+			}
+		}
+	}
+	
+	options = {
+	  stackBars: true,
+	  axisY: {
+	    labelInterpolationFnc: function(value) {
+	      return value;
+	    }
+	  },
+	  width: '100%',
+	  height: '80%'
+	}
+	//new Chartist.Line('.ct-chart', data);
+	new Chartist.Bar('.ct-chart', data, options).on('draw', function(data) {
+	  if(data.type === 'bar') {
+	    data.element.attr({
+	      style: 'stroke-width: 5%'
+	    });
+	  }
+	});
+}
+
 $(document).ready(function() {
 	$("#mainSection").load("mainSection.html", function() {
 		$("#btn-toggleTasks").on("click", function() {
@@ -85,17 +173,8 @@ $(document).ready(function() {
 			});
 		});
 		
-		var data = {
-			// A labels array that can contain any sort of values
-			labels : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-			// Our series array that contains series objects or in this case series data arrays
-			series : [[5, 2, 4, 2, 0]]
-		};
-
-		// Create a new line chart object where as first parameter we pass in a selector
-		// that is resolving to our chart container element. The Second parameter
-		// is the actual data object.
-		new Chartist.Line('.ct-chart', data);
+		
+		updateGraph(getTasks());
 	});
 	$("#tasksBar").load("tasksBar.html", function() {
 		addRow("TestRow", new Date().toDateString(), "2.0 Hours", "1 Hour");
