@@ -48,7 +48,24 @@
 		</nav>
 		<div class="container-fluid" id="main_container">
 			<div class="row">
-				<nav id="tasksBar" class="col-sm-3"></nav>
+				<nav id="tasksBar" class="col-sm-3">
+            
+<table id="tasksTable">
+	<tr id="addTaskRow">
+		<td><span>Add New Task</span></td>
+		<td>
+		<button id="btn-addTask">
+			+
+		</button></td>
+	</tr>
+</table>
+
+<div id="addTaskDialog" title="Add New Task">
+	<label for="f-name">Name</label><input id="f-name"/><br/>
+	<label for="f-date">Date</label><input id="f-date"/><br/>
+	<label for="f-time">Time</label><input id="f-time" type="number"/>
+</div>
+            </nav>
 				<div id="mainSection" class="col-sm-9"></div>
 			</div>
 		</div>

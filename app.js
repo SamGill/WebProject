@@ -5,7 +5,7 @@ class Task {
     this.time = time;
   }
   getDaysLeft(fromHere){
-  	//returns the number of hours to work each day based on fromHere and finishDate.
+   //returns the number of hours to work each day based on fromHere and finishDate.
   	var timeDiff = Math.abs(this.finishDate.getTime() - fromHere.getTime());
 	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 	return diffDays;
@@ -178,9 +178,6 @@ $(document).ready(function() {
 		
 		updateGraph(getTasks());
 	});
-	$("#tasksBar").load("tasksBar.html", function() {
-		addRow("TestRow", new Date().toDateString(), "2.0 Hours", "1 Hour");
-
 		$("#tasksTable").on("click", ".taskName, .taskDate, .taskEstimate, .taskProgress", function(event) {
 			showInputField(event, $(this));
 		});
@@ -190,7 +187,7 @@ $(document).ready(function() {
 		});
 
 		//stops the textfield from disappearing when the user clicks on it
-		$(".task-input").on("click", function(event) {
+		$("#tasksTable").on("click", ".task-input", function(event) {
 			event.stopPropagation();
 		});
 
@@ -222,5 +219,4 @@ $(document).ready(function() {
 				clearAddTask();
 			}
 		});
-	});
 });
