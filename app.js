@@ -206,17 +206,17 @@ $(document).ready(function() {
 		$("#addTaskDialog").dialog({
 			autoOpen : false,
 			modal : true,
-			buttons : {
-				"Add Task" : function() {
-					addTask();
-					$(this).dialog("close");
-				},
-				Cancel : function() {
-					$(this).dialog("close");
-				}
-			},
 			close : function() {
 				clearAddTask();
 			}
 		});
+      
+      $("#btn-closeAddTask").on("click", function() {
+         $("#addTaskDialog").dialog("close");
+      });
+      
+      $("#btn-submitAddTask").on("click", function() {
+         $("#addTaskDialog").dialog("close");
+         addTask();
+      });    
 });
