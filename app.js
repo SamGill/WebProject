@@ -219,7 +219,7 @@ $(document).ready(function() {
       });
       
       $("#btn-submitAddTask").on("click", function() {
-         $("#addTaskDialog").dialog("close");
          addTask();
+         $("#addTaskDialog").dialog("close");
       });    
 });
