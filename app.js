@@ -1,8 +1,9 @@
 class Task {
-  constructor(name, finishDate, time) {
+  constructor(name, finishDate, time, id) {
     this.name = name;
     this.finishDate = finishDate;
     this.time = time;
+    this.id = id;
   }
   getDaysLeft(fromHere){
    //returns the number of hours to work each day based on fromHere and finishDate.
@@ -20,6 +21,7 @@ class Task {
 
 var tasks = [];
 
+//testing
 function getTasks(){
 	var testDate = new Date(2016, 10, 20, 0, 0, 0, 1);
 	var testTask = new Task("test", testDate, 8);
@@ -35,7 +37,11 @@ function getTasks(){
 }
 
 function updateGraph(){
+	//gives us the current time (used multiple places below)
 	var now = new Date();
+	
+	//sort the tasks based on finishDate
+	tasks.sort(function(a,b) {return (a.getDaysLeft(now) > b.getDaysLeft(now)) ? 1 : ((b.getDaysLeft(now) > a.getDaysLeft(now)) ? -1 : 0);} );
 	
 	data = {
 	  labels: [],
@@ -52,8 +58,6 @@ function updateGraph(){
 		var tempDate = new Date();
 		tempDate.setDate(now.getDate() + i);
 		data.labels[i] = (tempDate.getMonth() + 1) + "/" + tempDate.getDate();
-		
-		
 	}
 	
 	//setting the bars
@@ -73,10 +77,9 @@ function updateGraph(){
 	  axisY: {
 	    labelInterpolationFnc: function(value) {
 	      return value;
-	    }
-	  },
-	  width: '100%',
-	  height: '80%'
+	    },
+	    onlyInteger: true
+	  }
 	}
 	//new Chartist.Line('.ct-chart', data);
 	new Chartist.Bar('.ct-chart', data, options).on('draw', function(data) {

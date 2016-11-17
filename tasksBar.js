@@ -1,13 +1,14 @@
-function addRow(name, date, estimate, progress) {
+function addRow(name, date, estimate, progress, id) {
 
 	var nameHtml = "<div>Name: <span class = 'taskName'>" + String(name) + "</span>" + "<input class='task-input' val='" + String(name) + "'/></div>";
 	var dateHtml = "<div>Due: <span class = 'taskDate'>" + String(date) + "</span>" + "<input class='task-input date-input' val='" + String(date) + "'/></div>";
 	var estimateHtml = "<div>Time: <span class = 'taskEstimate'>" + String(estimate) + "</span>" + "<input class='task-input' val='" + String(estimate) + "'/></div>";
 	var progressHtml = "<div>Progress: <span class = 'taskProgress'>" + String(progress) + "</span>" + "<input class='task-input' val='" + String(progress) + "'/></div>";
-
+	var hiddenData = "<p hidden id='id'>" + id + "</p>";
+	
 	var sideButtons = "<button onclick='removeTask(this)'>X</button>" + "<br/>" + "<button>Check</button>";
-
-	var html = "<tr class='taskRow'>" + "<td>" + nameHtml + dateHtml + estimateHtml + progressHtml + "</td>" + "<td>" + sideButtons + "</td>" + "</tr>";
+	
+	var html = "<tr class='taskRow'>" + "<td>" + nameHtml + dateHtml + estimateHtml + progressHtml + hiddenData + "</td>" + "<td>" + sideButtons + "</td>" + "</tr>";
 
 	$("#tasksTable").append(html);
 }
@@ -51,10 +52,14 @@ function addTask() {
 	var date = $("#f-date").val();
 	var time = $("#f-time").val();
 	
-	addRow(name, date, time, "0");
+	//should be up to the server to create a task id
+	var d = new Date();
+	var id = d.getTime();
+	
+	addRow(name, date, time, "0", id);
 	
 	//delete this later, this information should come from the database... I think
-	var t = new Task(name, new Date(date), parseInt(time));
+	var t = new Task(name, new Date(date), parseInt(time), id);
 	tasks.push(t);
 	updateGraph();
 }
@@ -67,6 +72,17 @@ function clearAddTask() {
 
 function removeTask(el) {
 	//probs need php eventually or something
+	var id = el.closest(".taskRow").getElementsByTagName("p")[0].innerHTML;
+	
+	//$(e1).closest()
+	
+	for(var i = 0; i < tasks.length; i++){
+		if(tasks[i].id == id){
+			tasks.splice(i,1);
+			break;
+		}
+	}
 	
 	el.closest(".taskRow").remove();
+	updateGraph();
 }
