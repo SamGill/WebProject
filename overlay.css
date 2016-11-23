@@ -1,0 +1,87 @@
+/*
+ *stuff that I used for the overlay   
+ */
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav tbody>tr:hover {
+	background-color: #cecd72;
+    /*color: #f1f1f1;*/
+   color:black;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 30px;}
+    .sidenav a {font-size: 18px;}
+}
+
+/*some stuff for the task bar table itself*/
+#tasksBar {
+	background-color: #74AFAD;
+	font-family: PT-Sans;
+	font-size: 1.2em;
+}
+
+#btn-addTask {
+	float: right;
+}
+
+.task-input {
+	display: none;
+}
+
+#addTasksDialog {
+	display: none;
+}
+
+/*
+ * 
+ * to make the table scroll correctly and stuff
+ * 
+ * */
+#tasksTable {
+	display: table;
+	width: 100%;
+}
+#tasksTable thead, #tasksTable tbody {
+	float: left;
+	width: 100%;
+}
+#tasksTable tbody {
+	overflow: auto;
+	/*max-height: 80vh;*/
+}
+#tasksTable tr {
+	width: 100%;
+	display: table;
+	text-align: left;
+}
+#tasksTable th, #tasksTable td {
+	width: 33%;
+}
+/*makes it so that the scroller doesn't appear*/
+tbody::-webkit-scrollbar { 
+    display: none; 
+}

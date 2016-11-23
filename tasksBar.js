@@ -1,3 +1,13 @@
+/* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("tasksBar").style.width = "33%";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("tasksBar").style.width = "0";
+}
+
 function addRow(name, date, estimate, progress, id) {
 
 	var nameHtml = "<div>Name: <span class = 'taskName'>" + String(name) + "</span>" + "<input class='task-input' val='" + String(name) + "'/></div>";
@@ -10,7 +20,7 @@ function addRow(name, date, estimate, progress, id) {
 	
 	var html = "<tr class='taskRow'>" + "<td>" + nameHtml + dateHtml + estimateHtml + progressHtml + hiddenData + "</td>" + "<td>" + sideButtons + "</td>" + "</tr>";
 
-	$("#tasksTable").append(html);
+	$("#tasksTable tbody").append(html);
 }
 
 function handleTextInput(event, el) {
