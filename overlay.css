@@ -32,10 +32,10 @@
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
+/*@media screen and (max-height: 450px) {
     .sidenav {padding-top: 30px;}
     .sidenav a {font-size: 18px;}
-}
+}*/
 
 /*some stuff for the task bar table itself*/
 #tasksBar {
@@ -71,16 +71,18 @@
 }
 #tasksTable tbody {
 	overflow: auto;
-	/*max-height: 80vh;*/
 }
+
 #tasksTable tr {
 	width: 100%;
 	display: table;
 	text-align: left;
 }
+
 #tasksTable th, #tasksTable td {
-	width: 33%;
+	/*width: 33%;*/
 }
+
 /*makes it so that the scroller doesn't appear*/
 tbody::-webkit-scrollbar { 
     display: none; 

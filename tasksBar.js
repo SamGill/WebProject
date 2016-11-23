@@ -1,6 +1,11 @@
 /* Set the width of the side navigation to 250px */
 function openNav() {
-    document.getElementById("tasksBar").style.width = "33%";
+	var windowWidth = $(window).width();
+	if (windowWidth < 800) {
+		document.getElementById("tasksBar").style.width = "75%";	
+	} else {
+		document.getElementById("tasksBar").style.width = "33%";
+	}   
 }
 
 /* Set the width of the side navigation to 0 */
