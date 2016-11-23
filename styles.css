@@ -1,6 +1,22 @@
 .mainButton {
 	border-radius: 10px;
+	background-color: yellow;
 }
+
+icon-bar {
+	background-color: white;
+}
+
+
+#legendContent {
+	background-color: #74AFAD;
+	box-shadow: 10px 10px 5px grey;
+}
+
+.navbar-toggle {
+	border-color: white;
+}
+
 body {
 	background-color: #ECECEA !important;
 	height: 90vh;

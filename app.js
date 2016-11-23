@@ -88,8 +88,17 @@ function updateGraph(){
 	      style: 'stroke-width: 5%'
 	    });
 	  }
+	  
 	});
 }
+
+//Legend functions
+function setLegend() {
+	var rowCount = $("#tasksTable tr");
+	console.log(rowCount);
+
+}
+
 
 $(document).ready(function() {
 	$("#mainSection").load("mainSection.html", function() {
