@@ -94,36 +94,42 @@ function updateGraph() {
 function setTaskBarHeight() {
 	/*var windowHeight = $(window).innerHeight();
 
-	var navHeight = $("#navContainer").height();
-	var tasksBarHeight = windowHeight - navHeight - 2;
-	$("#tasksBar").height(tasksBarHeight);
-	$("#tasksBar table").height(tasksBarHeight);
-	
-	var bodyHeight = tasksBarHeight - $("#tasksBar table thead").height();
-	
-	$("#tasksBar table tbody").height(bodyHeight);*/
-	
+	 var navHeight = $("#navContainer").height();
+	 var tasksBarHeight = windowHeight - navHeight - 2;
+	 $("#tasksBar").height(tasksBarHeight);
+	 $("#tasksBar table").height(tasksBarHeight);
+
+	 var bodyHeight = tasksBarHeight - $("#tasksBar table thead").height();
+
+	 $("#tasksBar table tbody").height(bodyHeight);*/
+
 	var h = $(".sidenav").height() - $("#tasksBar table thead").height();
-	$("#tasksBar table tbody").height(h);	
+	$("#tasksBar table tbody").height(h);
+}
+
+//Legend functions
+function setLegend() {
+	var rowCount = $("#tasksTable tr");
+	console.log(rowCount);
 }
 
 
 $(document).ready(function() {
-	for (var i=0; i < 10; i++) {
-	  	addRow("dummy", "blah", "2", "2", 2);
+	for (var i = 0; i < 10; i++) {
+		addRow("dummy", "blah", "2", "2", 2);
 	};
-	
+
 	$(window).on('resize', setTaskBarHeight);
-	
+
 	$("#mainSection").load("mainSection.html", function() {
 		$("#btn-toggleTasks").on("click", function() {
 			openNav();
 			/*var isVisible = $("#tasksBar").css("visibility") == "visible";
-			if (isVisible) {
-				$("#tasksBar").css('visibility', 'hidden');
-			} else {
-				$("#tasksBar").css('visibility', 'visible');
-			}*/
+			 if (isVisible) {
+			 $("#tasksBar").css('visibility', 'hidden');
+			 } else {
+			 $("#tasksBar").css('visibility', 'visible');
+			 }*/
 		});
 
 		//Toggle "About" Modal
