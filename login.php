@@ -1,5 +1,16 @@
 <?php
-	//TODO: Check if user is logged in.
+	session_start();
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "leveleffort";
+	
+	if(isset($_SESSION["user_id"]))//redirect to main page if they already have a session
+	{
+		header("Location: index.php");
+		exit;
+	}
+	
 	$errors = array();
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
@@ -26,23 +37,48 @@
 		
 		//cleared initial errors
 		if(sizeof($errors) == 0){
-			//get hashed password from DB.
-			$hashedUserPass = 0;
-			//enteredPass
-			$hashedEnteredPass = 0;
+			//get the user's info
 			
-			if($hashedUserPass != $hashedEnteredPass){
-				array_push($errors, "Password Invalid.");
-			}
+			//Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			} 
 			
-			if(sizeof($errors) == 0){
-				//create session
-				header("Location: index.html");
+			$sql = "SELECT * FROM accounts WHERE username='" . $_POST['username'] . "'";
+			$result = $conn->query($sql);
+			
+			if ($result === FALSE) {
+    			array_push($errors, "Failed to connect to the database");
 			}
-			else {
-				//continue to html part of file
+			else if ($result->num_rows == 0) {
+			    array_push($errors, "Username not found.");
+			}
+			else{
+				$row = $result->fetch_assoc();
+
+				echo $row['name'];
+				if(password_verify($_POST['password'], $row['password'])) {//check if the passwords match
+					// Set session variables
+					$_SESSION["username"] = $row['username'];
+					$_SESSION["user_id"] = $row['user_id'];
+					$_SESSION["is_gold"] = $row['is_gold'];
+					
+					//finally, go to the main page
+					header("Location: index.php");
+					exit;
+				}
+				else {//bad password
+					array_push($errors, "Username and password do not match.");
+				}
 			}
 		}
+		if(sizeof($errors) == 0){
+			//create session
+			header("Location: index.php");
+			exit;
+		}//else, continue to the login page.
 	}
 ?>
 

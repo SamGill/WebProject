@@ -1,3 +1,22 @@
+<?php
+	session_start();
+	if(!isset($_SESSION["user_id"]))//redirect to login page
+	{
+		header("Location: login.php");
+		exit;
+	}
+?>
+
+<!-- Copy and paste this anywhere where gold users get special privileges.
+	<?php
+		if($_SESSION["is_gold"] != 0){
+			//Do stuff for gold users!
+		}
+	?>
+-->
+
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,7 +65,14 @@
 						<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
 						<!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
 						<li>
-							<a href="#" id="btn-account" style="color: white;background-color:#558C89;" class="mainButton">Account</a>
+							<a href="#" id="btn-account" style="color: white;background-color:#558C89;" class="mainButton">
+							<?php
+								echo $_SESSION["username"];
+							?>
+							</a>
+						</li>
+						<li>
+							<a href="logout.php" id="btn-logout" style="color: white; background-color:#558C89; border-color: white" class="mainButton">Logout</a>
 						</li>
 						<li>
 							<a href="#" id="btn-about" style="color: white; background-color:#558C89; border-color: white" class="mainButton">About</a>
@@ -67,4 +93,11 @@
 		<script type="text/javascript" src="tasksBar.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 	</body>
+	<!--for instance!-->
+	<?php
+		if($_SESSION["is_gold"] != 0){
+			echo '<img src="http://25.media.tumblr.com/7747602ffb00f8bca26d2ecef35a682b/tumblr_mslx9kWDn11rkumvuo1_400.gif">';
+		}
+	?>
+	<!--delete this bullcrap later-->
 </html>

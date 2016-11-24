@@ -1,5 +1,16 @@
 <?php
-	//TODO: Check if user is logged in.
+	session_start();
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "leveleffort";
+	
+	if(isset($_SESSION["user_id"]))//redirect to main page
+	{
+		header("Location: index.php");
+		exit;
+	}
+	
 	$errors = array();
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
@@ -10,8 +21,24 @@
 		else if(!ctype_alnum ($_POST['username'])){
 			array_push($errors, "Username not valid, letters and numbers only.");
 		}
-		else if(false){
-			// TODO: make sure it's not taken 
+		else{//make sure it's not taken 
+			//Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			} 
+			
+			$sql = "SELECT * FROM accounts WHERE username='" . $_POST['username'] . "'";
+			$result = $conn->query($sql);
+			
+			if ($result === FALSE) {
+    			array_push($errors, "Failed to connect to the database");
+			}
+			else if ($result->num_rows > 0) { //username taken
+			    array_push($errors, "Username unavailable.");
+			}
+			$conn->close();
 		}
 		
 		//check the email 
@@ -21,8 +48,24 @@
 		else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 			array_push($errors, "Email invalid.");
 		}
-		else if(false){
-			// TODO: make sure it's not taken 
+		else{//make sure it isn't taken
+			//Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			} 
+			
+			$sql = "SELECT * FROM accounts WHERE email='" . $_POST['email'] . "'";
+			$result = $conn->query($sql);
+			
+			if ($result === FALSE) {
+    			array_push($errors, "Failed to connect to the database");
+			}
+			else if ($result->num_rows > 0) { //username taken
+			    array_push($errors, "Email already registered.");
+			}
+			$conn->close();
 		}
 		
 		//check the password
@@ -43,19 +86,42 @@
 		
 		//cleared initial errors
 		if(sizeof($errors) == 0){
-			//enteredPass
-			$hashedEnteredPass = 0;
-			
 			//create user
-			//log user in as well
+			//hash the password
+			$hashedEnteredPass = password_hash($_POST['password'], PASSWORD_DEFAULT);
 			
-			if(sizeof($errors) == 0){
-				//create session
-				header("Location: index.html");
+			//create a unique user_id
+			$user_id = uniqid();
+						
+			//Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			    die("Connection failed: " . $conn->connect_error);
+			} 
+			
+			$sql = "INSERT INTO `accounts` (`username`, `email`, `is_gold`, `register_timestamp`, `user_id`, `password`) VALUES ('";
+			$sql .= $_POST['username'] . "', '";
+			$sql .= $_POST['email'] . "', '0', CURRENT_TIMESTAMP, '";
+			$sql .= $user_id . "', '";
+			$sql .= $hashedEnteredPass . "');";
+			
+			if ($conn->query($sql) === FALSE) {
+    			array_push($errors, "Failed to connect to the database");
 			}
-			else {
-				//continue to html part of file
-			}
+			
+			$conn->close();
+		}
+		if(sizeof($errors) == 0){
+		
+			// Set session variables
+			$_SESSION["username"] = $_POST['username'];
+			$_SESSION["user_id"] = $user_id;
+			$_SESSION["is_gold"] = 0;
+			
+			//finally, go to the main page
+			header("Location: index.php");
+			exit;
 		}
 	}
 ?>
