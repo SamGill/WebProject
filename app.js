@@ -115,9 +115,9 @@ function setLegend() {
 
 
 $(document).ready(function() {
-	for (var i = 0; i < 10; i++) {
-		addRow("dummy", "blah", "2", "2", 2);
-	};
+	/*for (var i = 0; i < 10; i++) {
+	 addRow("dummy", "blah", "2", "2", 2);
+	 };*/
 
 	$(window).on('resize', setTaskBarHeight);
 
@@ -244,48 +244,8 @@ $(document).ready(function() {
 		updateGraph(getTasks());
 
 		setTaskBarHeight();
-
 	});
-
-	$("#tasksTable").on("click", ".taskName, .taskDate, .taskEstimate, .taskProgress", function(event) {
-		showInputField(event, $(this));
-	});
-
-	$("#tasksTable").on("keydown", ".task-input", function(event) {
-		handleTextInput(event, $(this));
-	});
-
-	//stops the textfield from disappearing when the user clicks on it
-	$("#tasksTable").on("click", ".task-input", function(event) {
-		event.stopPropagation();
-	});
-
-	//hide the textfield if anywhere is clicked
-	$("body").on("click", function() {
-		hideTextInput();
-	});
-
-	$("#f-date").datepicker();
-	$(".date-input").datepicker();
-
-	$("#btn-addTask").on("click", function() {
-		$("#addTaskDialog").dialog("open");
-	});
-
-	$("#addTaskDialog").dialog({
-		autoOpen : false,
-		modal : true,
-		close : function() {
-			clearAddTask();
-		}
-	});
-
-	$("#btn-closeAddTask").on("click", function() {
-		$("#addTaskDialog").dialog("close");
-	});
-
-	$("#btn-submitAddTask").on("click", function() {
-		addTask();
-		$("#addTaskDialog").dialog("close");
+	$("#tasksBar").load("tasksBar.html", function() {
+		runTaskBarEventHandlers();
 	});
 });

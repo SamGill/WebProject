@@ -87,3 +87,13 @@
 tbody::-webkit-scrollbar { 
     display: none; 
 }
+
+/*.btn:focus, .btn:active{
+	outline: none;
+	outline: 0 !important;	
+	border: none;
+}*/
+
+#showMore {
+	margin-top: 2%;
+}

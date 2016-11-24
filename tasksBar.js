@@ -2,15 +2,15 @@
 function openNav() {
 	var windowWidth = $(window).width();
 	if (windowWidth < 800) {
-		document.getElementById("tasksBar").style.width = "75%";	
+		document.getElementById("tasksBar").style.width = "75%";
 	} else {
 		document.getElementById("tasksBar").style.width = "33%";
-	}   
+	}
 }
 
 /* Set the width of the side navigation to 0 */
 function closeNav() {
-    document.getElementById("tasksBar").style.width = "0";
+	document.getElementById("tasksBar").style.width = "0";
 }
 
 function addRow(name, date, estimate, progress, id) {
@@ -20,9 +20,9 @@ function addRow(name, date, estimate, progress, id) {
 	var estimateHtml = "<div>Time: <span class = 'taskEstimate'>" + String(estimate) + "</span>" + "<input class='task-input' val='" + String(estimate) + "'/></div>";
 	var progressHtml = "<div>Progress: <span class = 'taskProgress'>" + String(progress) + "</span>" + "<input class='task-input' val='" + String(progress) + "'/></div>";
 	var hiddenData = "<p hidden id='id'>" + id + "</p>";
-	
+
 	var sideButtons = "<button onclick='removeTask(this)'>X</button>" + "<br/>" + "<button>Check</button>";
-	
+
 	var html = "<tr class='taskRow'>" + "<td>" + nameHtml + dateHtml + estimateHtml + progressHtml + hiddenData + "</td>" + "<td>" + sideButtons + "</td>" + "</tr>";
 
 	$("#tasksTable tbody").append(html);
@@ -66,13 +66,13 @@ function addTask() {
 	var name = $("#f-name").val();
 	var date = $("#f-date").val();
 	var time = $("#f-time").val();
-	
+
 	//should be up to the server to create a task id
 	var d = new Date();
 	var id = d.getTime();
-	
+
 	addRow(name, date, time, "0", id);
-	
+
 	//delete this later, this information should come from the database... I think
 	var t = new Task(name, new Date(date), parseInt(time), id);
 	tasks.push(t);
@@ -88,16 +88,97 @@ function clearAddTask() {
 function removeTask(el) {
 	//probs need php eventually or something
 	var id = el.closest(".taskRow").getElementsByTagName("p")[0].innerHTML;
-	
-	//$(e1).closest()
-	
-	for(var i = 0; i < tasks.length; i++){
-		if(tasks[i].id == id){
-			tasks.splice(i,1);
+
+	for (var i = 0; i < tasks.length; i++) {
+		if (tasks[i].id == id) {
+			tasks.splice(i, 1);
 			break;
 		}
 	}
-	
+
 	el.closest(".taskRow").remove();
 	updateGraph();
+}
+
+function toggleAdvancedEditing(){
+	var isVisible = $("#extraEdit").is(":visible");	
+	
+	$("#extraEdit").toggle();
+	var buttonText = "";
+	if (isVisible) {
+		buttonText = "SHOW MORE";
+	} else {
+		buttonText = "SHOW LESS";
+	}
+	$("#showMore").text(buttonText);
+}
+
+function runTaskBarEventHandlers() {
+	/*$("#tasksTable").on("click", ".taskName, .taskDate, .taskEstimate, .taskProgress", function(event) {
+		showInputField(event, $(this));
+	});
+
+	$("#tasksTable").on("keydown", ".task-input", function(event) {
+		handleTextInput(event, $(this));
+	});*/
+
+	//stops the textfield from disappearing when the user clicks on it
+	$("#tasksTable").on("click", ".task-input", function(event) {
+		event.stopPropagation();
+	});
+
+	//hide the textfield if anywhere is clicked
+	$("body").on("click", function() {
+		hideTextInput();
+	});
+
+	$("#f-date").datepicker();
+	$(".date-input").datepicker();
+
+	$("#btn-addTask").on("click", function() {
+		$("#addTaskDialog").dialog("open");
+	});
+
+	$("#addTaskDialog").dialog({
+		autoOpen : false,
+		modal : true,
+		close : function() {
+			clearAddTask();
+		}
+	});
+	
+	var offset = $("#extraEdit").height(); 
+	$("#updateTaskDialog").dialog({
+		autoOpen : false,
+		modal: true,
+		position:{
+			my: "center",
+			at: "top+"  + String(offset) + "px",
+			of: window,
+		} 
+	});
+	$("#extraEdit").hide();
+	
+
+	$("#tasksTable").on("click", "tbody > tr", function(event) {
+		$("#updateTaskDialog").dialog("open");
+		var name = $(this).find(".taskName").text();
+		var date = $(this).find(".taskDate").text();
+		var estimate = $(this).find(".taskEstimate").text();
+		var progress = $(this).find(".taskProgress").text();
+		
+		$("#update-f-name").val(name);
+		$("#update-f-date").val(date);
+		$("#update-f-time").val(estimate);
+		$("#update-f-progress").val(progress);
+	});
+
+	$("#btn-closeAddTask").on("click", function() {
+		$("#addTaskDialog").dialog("close");
+	});
+
+	$("#btn-submitAddTask").on("click", function() {
+		addTask();
+		$("#addTaskDialog").dialog("close");
+	});
 }
