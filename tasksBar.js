@@ -13,6 +13,11 @@ function closeNav() {
 	document.getElementById("tasksBar").style.width = "0";
 }
 
+function setTaskBarHeight() {
+	var h = $(".sidenav").height() - $("#tasksBar table thead").height();
+	$("#tasksBar table tbody").height(h);
+}
+
 function addRow(name, date, estimate, progress, id) {
 
 	var nameHtml = "<div>Name: <span class = 'taskName'>" + String(name) + "</span>" + "<input class='task-input' val='" + String(name) + "'/></div>";
@@ -100,9 +105,9 @@ function removeTask(el) {
 	updateGraph();
 }
 
-function toggleAdvancedEditing(){
-	var isVisible = $("#extraEdit").is(":visible");	
-	
+function toggleAdvancedEditing() {
+	var isVisible = $("#extraEdit").is(":visible");
+
 	$("#extraEdit").toggle();
 	var buttonText = "";
 	if (isVisible) {
@@ -115,11 +120,11 @@ function toggleAdvancedEditing(){
 
 function runTaskBarEventHandlers() {
 	/*$("#tasksTable").on("click", ".taskName, .taskDate, .taskEstimate, .taskProgress", function(event) {
-		showInputField(event, $(this));
+	showInputField(event, $(this));
 	});
 
 	$("#tasksTable").on("keydown", ".task-input", function(event) {
-		handleTextInput(event, $(this));
+	handleTextInput(event, $(this));
 	});*/
 
 	//stops the textfield from disappearing when the user clicks on it
@@ -146,19 +151,18 @@ function runTaskBarEventHandlers() {
 			clearAddTask();
 		}
 	});
-	
-	var offset = $("#extraEdit").height(); 
+
+	var offset = $("#extraEdit").height();
 	$("#updateTaskDialog").dialog({
 		autoOpen : false,
-		modal: true,
-		position:{
-			my: "center",
-			at: "top+"  + String(offset) + "px",
-			of: window,
-		} 
+		modal : true,
+		position : {
+			my : "center",
+			at : "top+" + String(offset) + "px",
+			of : window,
+		}
 	});
 	$("#extraEdit").hide();
-	
 
 	$("#tasksTable").on("click", "tbody > tr", function(event) {
 		$("#updateTaskDialog").dialog("open");
@@ -166,7 +170,7 @@ function runTaskBarEventHandlers() {
 		var date = $(this).find(".taskDate").text();
 		var estimate = $(this).find(".taskEstimate").text();
 		var progress = $(this).find(".taskProgress").text();
-		
+
 		$("#update-f-name").val(name);
 		$("#update-f-date").val(date);
 		$("#update-f-time").val(estimate);

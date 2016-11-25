@@ -97,3 +97,22 @@ tbody::-webkit-scrollbar {
 #showMore {
 	margin-top: 2%;
 }
+
+#resetPasswordInfo > .modal-content{
+	width: 50% ;
+}
+
+#changePasswordLink {
+	color: white;
+}
+
+
+
+@media (max-width: 600px){
+	#resetPasswordInfo > .modal-content{
+		width: 80%;
+	}	
+}
+
+
+

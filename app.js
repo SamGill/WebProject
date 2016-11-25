@@ -91,22 +91,6 @@ function updateGraph() {
 	});
 }
 
-function setTaskBarHeight() {
-	/*var windowHeight = $(window).innerHeight();
-
-	 var navHeight = $("#navContainer").height();
-	 var tasksBarHeight = windowHeight - navHeight - 2;
-	 $("#tasksBar").height(tasksBarHeight);
-	 $("#tasksBar table").height(tasksBarHeight);
-
-	 var bodyHeight = tasksBarHeight - $("#tasksBar table thead").height();
-
-	 $("#tasksBar table tbody").height(bodyHeight);*/
-
-	var h = $(".sidenav").height() - $("#tasksBar table thead").height();
-	$("#tasksBar table tbody").height(h);
-}
-
 //Legend functions
 function setLegend() {
 	var rowCount = $("#tasksTable tr");
@@ -115,21 +99,17 @@ function setLegend() {
 
 
 $(document).ready(function() {
-	/*for (var i = 0; i < 10; i++) {
-	 addRow("dummy", "blah", "2", "2", 2);
-	 };*/
+	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
+	//THE CHANGES YOU MAKE DON'T APPEAR
+	$.ajaxSetup({
+		cache : false
+	});
 
 	$(window).on('resize', setTaskBarHeight);
 
 	$("#mainSection").load("mainSection.html", function() {
 		$("#btn-toggleTasks").on("click", function() {
 			openNav();
-			/*var isVisible = $("#tasksBar").css("visibility") == "visible";
-			 if (isVisible) {
-			 $("#tasksBar").css('visibility', 'hidden');
-			 } else {
-			 $("#tasksBar").css('visibility', 'visible');
-			 }*/
 		});
 
 		//Toggle "About" Modal
@@ -139,11 +119,9 @@ $(document).ready(function() {
 			});
 		});
 
-		$(".close").on("click", function() {
-			$("#AboutModal").css({
-				display : "none"
-			});
-			$(".modal-body").replaceWith("<div class=\"modal-body\"><center>This web app was created by some passionate developers, just for you!</center><center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center><center id=\"ctr-name\">Garth Murray</center></div>");
+		$("#closeContact").on("click", function() {
+
+			$("#about-modal-body").replaceWith("<div class=\"modal-body\" id='about-modal-body'><center>This web app was created by some passionate developers, just for you!</center><center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center><center id=\"ctr-name\">Garth Murray</center></div>");
 
 			$("#btn-cancel-contact").css({
 				display : "none"
@@ -154,7 +132,7 @@ $(document).ready(function() {
 			$("#btn-contact").css({
 				display : "block"
 			});
-
+			$("#AboutModal").hide();
 		});
 
 		$(".body").on("click", function() {
@@ -165,9 +143,9 @@ $(document).ready(function() {
 
 		//Modal "Contact Us" button
 		$("#btn-contact").on("click", function() {
-			$(".modal-body").fadeOut('slow', function() {
-				$(".modal-body").replaceWith("<div class=\"modal-body\"><form id=\"emailForm\" method=\"POST\" action =\"email.php\"<div class=\"form-group\"><textarea class=\"form-control\" name=\"emailContent\" rows=\"10\">");
-				$(".modal-body").fadeIn('slow').slideDown('slow');
+			$("#about-modal-body").fadeOut('slow', function() {
+				$("#about-modal-body").replaceWith("<div class=\"modal-body\" id='about-modal-body'><form id=\"emailForm\" method=\"POST\" action =\"email.php\"<div class=\"form-group\"><textarea class=\"form-control\" name=\"emailContent\" rows=\"10\">");
+				$("#about-modal-body").fadeIn('slow').slideDown('slow');
 				//Sets timeout so textbox can appear before focusing
 				setTimeout(function() {
 					$(".form-control").focus();
@@ -193,9 +171,9 @@ $(document).ready(function() {
 
 		//Modal Cancel Button
 		$("#btn-cancel-contact").on("click", function() {
-			$(".modal-body").fadeOut('slow', function() {
-				$(".modal-body").replaceWith("<div class=\"modal-body\"><center>This web app was created by some passionate developers, just for you!</center><center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center><center id=\"ctr-name\">Garth Murray</center></div>");
-				$(".modal-body").fadeIn('slow');
+			$("#about-modal-body").fadeOut('slow', function() {
+				$("#about-modal-body").replaceWith("<div class=\"modal-body\"><center>This web app was created by some passionate developers, just for you!</center><center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center><center id=\"ctr-name\">Garth Murray</center></div>");
+				$("#about-modal-body").fadeIn('slow');
 			});
 			$("#btn-cancel-contact").fadeOut('slow', function() {
 				$("#btn-cancel-contact").css({
@@ -247,5 +225,8 @@ $(document).ready(function() {
 	});
 	$("#tasksBar").load("tasksBar.html", function() {
 		runTaskBarEventHandlers();
+	});
+	$("#accountPage").load("accountPage.php", function() {
+		runAccountPageEventHandlers();
 	});
 });

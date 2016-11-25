@@ -64,7 +64,7 @@
 					$_SESSION["username"] = $row['username'];
 					$_SESSION["user_id"] = $row['user_id'];
 					$_SESSION["is_gold"] = $row['is_gold'];
-					
+					$_SESSION["completed_tasks"] = $row['completed_tasks'];
 					//finally, go to the main page
 					header("Location: index.php");
 					exit;
