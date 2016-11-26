@@ -74,7 +74,7 @@ function addTask() {
 
 	pushTask(name, parseInt(time), new Date(), new Date(date));
 	
-	updateTasksList();
+	getTasks();
 	
 	//should be up to the server to create a task id
 //	var d = new Date();
