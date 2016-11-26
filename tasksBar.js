@@ -72,16 +72,26 @@ function addTask() {
 	var date = $("#f-date").val();
 	var time = $("#f-time").val();
 
+	pushTask(name, parseInt(time), new Date(), new Date(date));
+	
+	updateTasksList();
+	
 	//should be up to the server to create a task id
-	var d = new Date();
-	var id = d.getTime();
+//	var d = new Date();
+//	var id = d.getTime();
 
-	addRow(name, date, time, "0", id);
+	
+//	addRow(name, date, time, "0", id);
+	
 
 	//delete this later, this information should come from the database... I think
-	var t = new Task(name, new Date(date), parseInt(time), id);
-	tasks.push(t);
-	updateGraph();
+//	var t = new Task(name, new Date(date), parseInt(time), id);
+//	tasks.push(t);
+//	updateGraph();
+}
+
+function updateTask() {
+	//TODO:
 }
 
 function clearAddTask() {
@@ -91,18 +101,23 @@ function clearAddTask() {
 }
 
 function removeTask(el) {
+	//TODO:
 	//probs need php eventually or something
 	var id = el.closest(".taskRow").getElementsByTagName("p")[0].innerHTML;
 
-	for (var i = 0; i < tasks.length; i++) {
-		if (tasks[i].id == id) {
-			tasks.splice(i, 1);
-			break;
-		}
-	}
+	//for (var i = 0; i < tasks.length; i++) {
+	//	if (tasks[i].id == id) {
+	//		tasks.splice(i, 1);
+	//		break;
+	//	}
+//	}
 
-	el.closest(".taskRow").remove();
-	updateGraph();
+	removeTask(id);
+	getTasks();
+
+	
+	//el.closest(".taskRow").remove();
+	//updateGraph();
 }
 
 function toggleAdvancedEditing() {
@@ -116,6 +131,17 @@ function toggleAdvancedEditing() {
 		buttonText = "SHOW LESS";
 	}
 	$("#showMore").text(buttonText);
+}
+
+function updateTasksTable(){
+	$("#tasksTable tbody").html("");
+	for(var i = 0; i < tasks.length; i++)
+	{
+		console.log(tasks[i].title);
+		addRow(tasks[i].title, tasks[i].goal_date, tasks[i].total_time, tasks[i].progress_time, tasks[i].id);
+	}
+	
+	//addRow(name, date, time, "0", id);
 }
 
 function runTaskBarEventHandlers() {
@@ -137,8 +163,12 @@ function runTaskBarEventHandlers() {
 		hideTextInput();
 	});
 
-	$("#f-date").datepicker();
-	$(".date-input").datepicker();
+	$("#f-date").datepicker({
+		minDate: 0
+	});
+	$(".date-input").datepicker({
+		minDate: 0
+	});
 
 	$("#btn-addTask").on("click", function() {
 		$("#addTaskDialog").dialog("open");
@@ -165,12 +195,18 @@ function runTaskBarEventHandlers() {
 	$("#extraEdit").hide();
 
 	$("#tasksTable").on("click", "tbody > tr", function(event) {
+		//TODO: Idek
+		//var id = $(this).getElementsByTagName("p")[0].innerHTML;
+		
+		//console.log(id);
+		//I suppose this is fine...
 		$("#updateTaskDialog").dialog("open");
 		var name = $(this).find(".taskName").text();
 		var date = $(this).find(".taskDate").text();
 		var estimate = $(this).find(".taskEstimate").text();
 		var progress = $(this).find(".taskProgress").text();
-
+		
+		
 		$("#update-f-name").val(name);
 		$("#update-f-date").val(date);
 		$("#update-f-time").val(estimate);
@@ -183,6 +219,11 @@ function runTaskBarEventHandlers() {
 
 	$("#btn-submitAddTask").on("click", function() {
 		addTask();
+		$("#addTaskDialog").dialog("close");
+	});
+	
+	$("#btn-submitUpdateTask").on("click", function() {
+		//updateTask();
 		$("#addTaskDialog").dialog("close");
 	});
 }

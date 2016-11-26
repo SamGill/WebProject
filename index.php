@@ -92,6 +92,8 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="accountPage.js"></script>
+		<script type="text/javascript" src="task_functions.js"></script>
+		<script type="text/javascript" src="database_connections.js"></script>
 		<script type="text/javascript" src="tasksBar.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 	</body>

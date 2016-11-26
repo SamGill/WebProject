@@ -1,41 +1,3 @@
-class Task {
-	constructor(name, finishDate, time, id) {
-		this.name = name;
-		this.finishDate = finishDate;
-		this.time = time;
-		this.id = id;
-	}
-	getDaysLeft(fromHere) {
-		//returns the number of hours to work each day based on fromHere and finishDate.
-		var timeDiff = Math.abs(this.finishDate.getTime() - fromHere.getTime());
-		var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-		return diffDays;
-	}
-	getDailyTime(fromHere) {
-		return this.time / this.getDaysLeft(fromHere);
-	}
-	getTime() {
-		return this.time;
-	}
-}
-
-var tasks = [];
-
-//testing
-function getTasks() {
-	var testDate = new Date(2016, 10, 20, 0, 0, 0, 1);
-	var testTask = new Task("test", testDate, 8);
-
-	var testDate2 = new Date(2016, 10, 23, 0, 0, 0, 1);
-	var testTask2 = new Task("test2", testDate2, 16);
-
-	var tasks = [];
-	tasks[0] = testTask;
-	tasks[1] = testTask2;
-	tasks[2] = testTask;
-	return tasks;
-}
-
 function updateGraph() {
 	//gives us the current time (used multiple places below)
 	var now = new Date();
@@ -218,10 +180,11 @@ $(document).ready(function() {
 				}
 			});
 		});
-
-		updateGraph(getTasks());
-
+		
 		setTaskBarHeight();
+
+		updateGraph();
+		getTasks();
 	});
 	$("#tasksBar").load("tasksBar.html", function() {
 		runTaskBarEventHandlers();
