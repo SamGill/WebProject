@@ -18,7 +18,10 @@ function pushTask(name, time, entry_date, goal_date){
 	    		"total_hours": time,
 	    		"entry_date": formatDate(entry_date),
 	    		"goal_date": formatDate(goal_date)},
-	    success: function(response) { console.log(response); },
+	    success: function(response) { 
+	    	console.log(response);
+			getTasks();
+	    },
 	    failure: function(response) { alert("Could not connect to Server!");}
 	});
 }
@@ -33,17 +36,20 @@ function updateTask(name, time, entry_date, goal_date, task_id, hours_completed)
 	    		"progress_hours": hours_completed,
 	    		"entry_date": formatDate(entry_date),
 	    		"goal_date": formatDate(goal_date)},
-	    success: function(response) { console.log(response); },
+	    success: function(response) { 
+	    	console.log(response);
+			getTasks();
+	    },
 	    failure: function(response) { alert("Could not connect to Server!");}
 	});
 }
 
 function getTasks(){
+	tasks = [];
 	$.getJSON( "get_tasks.php", function() {
 	  console.log( "success" );
 	})
 	  .done(function(dataOut) {
-	  	var jerk = 0;
 	    $.each(dataOut, function(i, item){
 	    	var t = new Task(item.task_id, new Date(item.entry_date), new Date(item.goal_date), item.title, parseInt(item.total_hours), parseInt(item.progress_hours));
 	    	tasks.push(t);
@@ -57,4 +63,42 @@ function getTasks(){
 	  .always(function() {
 	    console.log( "complete" );
 	  });
+}
+
+function deleteTask(event, el) {
+	event.stopPropagation();
+	
+	var test = $(el).closest('tr');
+	var test2 = $(test).find('p')
+	var id = $(test2)[0].innerHTML;
+
+	$.ajax({
+	    url: 'delete_task.php',
+	    type: 'post',
+	    data: { "task_id": id},
+	    success: function(response) { 
+	    	console.log(response);
+			getTasks();
+	    },
+	    failure: function(response) { alert("Could not connect to Server!");}
+	});
+}
+
+function checkTask(event, el) {
+	event.stopPropagation();
+	
+	var test = $(el).closest('tr');
+	var test2 = $(test).find('p')
+	var id = $(test2)[0].innerHTML;
+
+	$.ajax({
+	    url: 'check_task.php',
+	    type: 'post',
+	    data: { "task_id": id},
+	    success: function(response) { 
+	    	console.log(response);
+			getTasks();
+	    },
+	    failure: function(response) { alert("Could not connect to Server!");}
+	});
 }

@@ -46,7 +46,7 @@
 				SET `goal_date`='" . $goal_date . "', ";
 		$sql .= "`title`='" . $title . "', ";
 		$sql .= "`total_hours`='" . $total_hours . "', ";
-		$sql .= "`progress_hours`='" . $progress_hours . "'";
+		$sql .= "`progress_hours`='" . $progress_hours . "' ";
 		$sql .= "WHERE `task_id`='" . $task_id . "';";
 		
 		//echo $sql;
