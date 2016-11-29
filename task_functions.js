@@ -22,4 +22,4 @@ class Task {
 }
 
 var tasks = [];
-
+var lastTaskClicked;//this is for keeping track of which task we're updating after we open the update modal

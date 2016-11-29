@@ -168,15 +168,18 @@ function runTaskBarEventHandlers() {
 	$("#tasksTable").on("click", "tbody > tr", function(event) {
 		$("#updateTaskDialog").dialog("open");
 		var name = $(this).find(".taskName").text();
-		var date = $(this).find(".taskDate").text();
-		var estimate = $(this).find(".taskEstimate").text();
-		var progress = $(this).find(".taskProgress").text();
+		var goal_date = $(this).find(".taskDate").text();
+		var time = $(this).find(".taskEstimate").text();
+		var hours_completed = $(this).find(".taskProgress").text();
 		
+		var test = $(this).closest('tr');
+		var test2 = $(test).find('p')
+		lastTaskClicked = $(test2)[0].innerHTML;
 		
 		$("#update-f-name").val(name);
 		$("#update-f-date").val(date);
 		$("#update-f-time").val(estimate);
-		$("#update-f-progress").val(progress);
+		$("#update-f-progress").val(progress);		
 	});
 
 	$("#btn-closeAddTask").on("click", function() {
@@ -189,7 +192,19 @@ function runTaskBarEventHandlers() {
 	});
 	
 	$("#btn-submitUpdateTask").on("click", function() {
-		updateTask();
+		var name = $("#update-f-name").val(name);
+		var goal_date = $("#update-f-date").val(date);
+		var time = $("#update-f-time").val(estimate);
+		var hours_completed = $("#update-f-progress").val(progress);		
+		var task_id = lastTaskClicked;
+		
+		
+		var result = $.grep(tasks, function(e){ return e.task_id == task_id; });
+		
+		var entry_date = result[0].entry_date;
+		
+		updateTask(name, time, entry_date, goal_date, task_id, hours_completed);
+		
 		$("#updateTaskDialog").dialog("close");
 	});
 }
