@@ -10,6 +10,17 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+function easyReadingFormattedDate(date) {
+    var month = date.getMonth() + 1;
+    var day = date.getDate() + 1;
+    var year = date.getFullYear();
+    
+    if(month < 10)
+    	return "0" + month + "/" + day + "/" + year;
+    else
+    	return month + "/" + day + "/" + year;
+}
+
 function pushTask(name, time, entry_date, goal_date){
 	$.ajax({
 	    url: 'create_task.php',
@@ -28,7 +39,7 @@ function pushTask(name, time, entry_date, goal_date){
 
 function updateTask(name, time, entry_date, goal_date, task_id, hours_completed){
 	$.ajax({
-	    url: 'create_task.php',
+	    url: 'update_task.php',
 	    type: 'post',
 	    data: { "task_id": task_id,
 	    		"title": name,
