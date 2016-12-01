@@ -58,7 +58,7 @@
 			else{
 				$row = $result->fetch_assoc();
 
-				echo $row['name'];
+				//echo $row['name'];
 				if(password_verify($_POST['password'], $row['password'])) {//check if the passwords match
 					// Set session variables
 					$_SESSION["username"] = $row['username'];
