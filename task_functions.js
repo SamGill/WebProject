@@ -10,6 +10,7 @@ class Task {
 	getDaysLeft(fromHere) {
 		//returns the number of hours to work each day based on fromHere and finishDate.
 		var timeDiff = Math.abs(this.goal_date.getTime() - fromHere.getTime());
+		
 		var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 		return diffDays;
 	}
