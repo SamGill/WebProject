@@ -54,7 +54,7 @@ body {
 	box-shadow: none;
 	border-color: #ccc;
 }
-.btn-login {
+.btn-login, .btn-recovery {
 	background-color: #59B2E0;
 	outline: none;
 	color: #fff;
@@ -65,8 +65,8 @@ body {
 	text-transform: uppercase;
 	border-color: #59B2E6;
 }
-.btn-login:hover,
-.btn-login:focus {
+.btn-login:hover, .btn-recovery:hover
+.btn-login:focus, .btn-recovery:focus {
 	color: #fff;
 	background-color: #53A3CD;
 	border-color: #53A3CD;

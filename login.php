@@ -132,7 +132,7 @@
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> Remember Me</label>
+										<label for="remember">Remember Me</label>
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -145,7 +145,7 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+													<a tabindex="5" class="forgot-password">Forgot Password?</a>
 												</div>
 											</div>
 										</div>
@@ -172,6 +172,26 @@
 										</div>
 									</div>
 								</form>
+								<div id="password-recovery-form" style="display:none">
+									<div id="new-password-main-info">
+										<div class="form-group">
+											<h3>
+												Password Recovery
+											</h3>
+											<input type="email" class="form-control" placeholder="enter email" name="recovery-field" id="recovery-field">
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 col-sm-offset-3">
+													<input type="submit" class="form-control btn btn-recovery" onclick="send_recovery_email()" value="Send Recovery Email"/>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="reset-successful-info">
+										<p>New Password sent!</p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -179,7 +199,8 @@
 			</div>
 		</div>
 	</div>
-    
+		
+	
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
