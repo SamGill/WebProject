@@ -67,20 +67,11 @@ function showInputField(event, el) {
 }
 
 function addTask() {
-	//database stuff later probs
-	var name = $("#f-name").val();
+ 	var name = $("#f-name").val();
 	var date = $("#f-date").val();
 	var time = $("#f-time").val();
 
 	pushTask(name, parseInt(time), new Date(), new Date(date));
-}
-
-function updateTask() {
-	//TODO:
-	$("#update-f-name").val(name);
-	$("#update-f-date").val(date);
-	$("#update-f-time").val(estimate);
-	$("#update-f-progress").val(progress);
 }
 
 function clearAddTask() {
@@ -106,7 +97,7 @@ function updateTasksTable(){
 	$("#tasksTable tbody").html("");
 	for(var i = 0; i < tasks.length; i++)
 	{
-		addRow(tasks[i].title, tasks[i].goal_date, tasks[i].total_hours, tasks[i].progress_hours, tasks[i].task_id);
+		addRow(tasks[i].title, easyReadingFormattedDate(tasks[i].goal_date), tasks[i].total_hours, tasks[i].progress_hours, tasks[i].task_id);
 	}
 }
 
@@ -168,15 +159,18 @@ function runTaskBarEventHandlers() {
 	$("#tasksTable").on("click", "tbody > tr", function(event) {
 		$("#updateTaskDialog").dialog("open");
 		var name = $(this).find(".taskName").text();
-		var date = $(this).find(".taskDate").text();
-		var estimate = $(this).find(".taskEstimate").text();
-		var progress = $(this).find(".taskProgress").text();
+		var goal_date = $(this).find(".taskDate").text();
+		var time = $(this).find(".taskEstimate").text();
+		var hours_completed = $(this).find(".taskProgress").text();
 		
+		var test = $(this).closest('tr');
+		var test2 = $(test).find('p')
+		lastTaskClicked = $(test2)[0].innerHTML;
 		
 		$("#update-f-name").val(name);
-		$("#update-f-date").val(date);
-		$("#update-f-time").val(estimate);
-		$("#update-f-progress").val(progress);
+		$("#update-f-date").val(goal_date);
+		$("#update-f-time").val(time);
+		$("#update-f-progress").val(hours_completed);		
 	});
 
 	$("#btn-closeAddTask").on("click", function() {
@@ -189,7 +183,19 @@ function runTaskBarEventHandlers() {
 	});
 	
 	$("#btn-submitUpdateTask").on("click", function() {
-		updateTask();
+		var name = $("#update-f-name").val();
+		var goal_date = $("#update-f-date").val();
+		var time = $("#update-f-time").val();
+		var hours_completed = $("#update-f-progress").val();		
+		var task_id = lastTaskClicked;
+		
+		
+		var result = $.grep(tasks, function(e){ return e.task_id == task_id; });
+		
+		var entry_date = result[0].entry_date;
+		
+		updateTask(name, time, entry_date, goal_date, task_id, hours_completed);
+		
 		$("#updateTaskDialog").dialog("close");
 	});
 }

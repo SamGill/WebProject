@@ -69,3 +69,7 @@ body {
 #navContainer {
 	margin-bottom: 0px;
 }
+
+.chartDialogValues {
+	font-weight: bold;
+}

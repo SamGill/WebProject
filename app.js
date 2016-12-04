@@ -1,65 +1,3 @@
-function updateGraph() {
-	//gives us the current time (used multiple places below)
-	var now = new Date();
-
-	//sort the tasks based on finishDate
-	tasks.sort(function(a, b) {
-		return (a.getDaysLeft(now) > b.getDaysLeft(now)) ? 1 : ((b.getDaysLeft(now) > a.getDaysLeft(now)) ? -1 : 0);
-	});
-
-	data = {
-		labels : [],
-		series : []
-	}
-
-	//initialize the task series
-	for (var i = 0; i < tasks.length; i++) {
-		data.series[i] = [];
-	}
-
-	//setting up the date legend
-	for (var i = 0; i < 14; i++) {
-		var tempDate = new Date();
-		tempDate.setDate(now.getDate() + i);
-		data.labels[i] = (tempDate.getMonth() + 1) + "/" + tempDate.getDate();
-	}
-
-	//setting the bars
-	for (var i = 0; i < tasks.length; i++) {
-		for (var j = 0; j < 14; j++) {
-			data.series[i][j] = tasks[i].getTime() - (tasks[i].getDailyTime(now) * j);
-			if (data.series[i][j] < 0) {
-				data.series[i][j] = 0;
-			}
-		}
-	}
-
-	options = {
-		stackBars : true,
-		axisY : {
-			labelInterpolationFnc : function(value) {
-				return value;
-			},
-			onlyInteger : true
-		}
-	}
-	//new Chartist.Line('.ct-chart', data);
-	new Chartist.Bar('.ct-chart', data, options).on('draw', function(data) {
-		if (data.type === 'bar') {
-			data.element.attr({
-				style : 'stroke-width: 5%'
-			});
-		}
-	});
-}
-
-//Legend functions
-function setLegend() {
-	var rowCount = $("#tasksTable tr");
-	console.log(rowCount);
-}
-
-
 $(document).ready(function() {
 	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
 	//THE CHANGES YOU MAKE DON'T APPEAR
@@ -192,4 +130,8 @@ $(document).ready(function() {
 	$("#accountPage").load("accountPage.php", function() {
 		runAccountPageEventHandlers();
 	});
+	$("#chartInfoModal").load("chartInfoModal.html", function() {
+		runChartInfoEventHandlers();
+	});
+	
 });
