@@ -26,12 +26,22 @@ function updateGraph() {
 
 	//setting the bars
 	for (var i = 0; i < tasks.length; i++) {
-		for (var j = 0; j < 14; j++) {
-			data.series[i][j] = tasks[i].getTime() - (tasks[i].getDailyTime(now) * j);
-			if (data.series[i][j] < 0) {
+		if(tasks[i].getDaysLeft(now) <= 0)//past the due date
+		{
+			data.series[i][0] = tasks[i].getTime();
+			for (var j = 1; j < 14; j++) {
 				data.series[i][j] = 0;
 			}
 		}
+		else//not past due date
+		{
+			for (var j = 0; j < 14; j++) {
+				data.series[i][j] = tasks[i].getTime() - (tasks[i].getDailyTime(now) * j);
+				if (data.series[i][j] < 0) {
+					data.series[i][j] = 0;
+				}
+			}
+		}	
 	}
 
 	options = {

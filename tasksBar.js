@@ -97,7 +97,9 @@ function updateTasksTable(){
 	$("#tasksTable tbody").html("");
 	for(var i = 0; i < tasks.length; i++)
 	{
+		//addRow(tasks[i].getDaysLeft(new Date()), easyReadingFormattedDate(tasks[i].goal_date), tasks[i].total_hours, tasks[i].progress_hours, tasks[i].task_id);
 		addRow(tasks[i].title, easyReadingFormattedDate(tasks[i].goal_date), tasks[i].total_hours, tasks[i].progress_hours, tasks[i].task_id);
+
 	}
 }
 

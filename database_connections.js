@@ -10,9 +10,14 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+function anotherFormatterBecauseJavscriptSucks(string){
+	var arr = string.split("-");
+	return arr[1] + "/" + arr[2] + "/" + arr[0];
+}
+
 function easyReadingFormattedDate(date) {
     var month = date.getMonth() + 1;
-    var day = date.getDate() + 1;
+    var day = date.getDate();
     var year = date.getFullYear();
     
     if(month < 10)
@@ -62,7 +67,7 @@ function getTasks(){
 	})
 	  .done(function(dataOut) {
 	    $.each(dataOut, function(i, item){
-	    	var t = new Task(item.task_id, new Date(item.entry_date), new Date(item.goal_date), item.title, parseInt(item.total_hours), parseInt(item.progress_hours));
+	    	var t = new Task(item.task_id, new Date(anotherFormatterBecauseJavscriptSucks(item.entry_date)), new Date(anotherFormatterBecauseJavscriptSucks(item.goal_date)), item.title, parseInt(item.total_hours), parseInt(item.progress_hours));
 	    	tasks.push(t);
 	    });
 		updateTasksTable();

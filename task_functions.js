@@ -9,16 +9,16 @@ class Task {
 	}
 	getDaysLeft(fromHere) {
 		//returns the number of hours to work each day based on fromHere and finishDate.
-		var timeDiff = Math.abs(this.goal_date.getTime() - fromHere.getTime());
-		
+		var timeDiff = this.goal_date.getTime() - fromHere.getTime();
 		var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		
 		return diffDays;
 	}
 	getDailyTime(fromHere) {
-		return this.total_hours / this.getDaysLeft(fromHere);
+		return this.getTime() / this.getDaysLeft(fromHere);
 	}
 	getTime() {
-		return this.total_hours;
+		return this.total_hours - this.progress_hours;
 	}
 }
 
