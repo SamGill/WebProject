@@ -29,7 +29,7 @@
 			    die("Connection failed: " . $conn->connect_error);
 			} 
 			
-			$sql = "SELECT * FROM accounts WHERE username='" . $_POST['username'] . "'";
+			$sql = "SELECT * FROM accounts WHERE username='" . strtolower($_POST['username']) . "'";
 			$result = $conn->query($sql);
 			
 			if ($result === FALSE) {
@@ -56,7 +56,7 @@
 			    die("Connection failed: " . $conn->connect_error);
 			} 
 			
-			$sql = "SELECT * FROM accounts WHERE email='" . $_POST['email'] . "'";
+			$sql = "SELECT * FROM accounts WHERE email='" . strtolower($_POST['email']) . "'";
 			$result = $conn->query($sql);
 			
 			if ($result === FALSE) {
@@ -101,8 +101,8 @@
 			} 
 			
 			$sql = "INSERT INTO `accounts` (`username`, `email`, `is_gold`, `register_timestamp`, `user_id`, `password`) VALUES ('";
-			$sql .= $_POST['username'] . "', '";
-			$sql .= $_POST['email'] . "', '0', CURRENT_TIMESTAMP, '";
+			$sql .= strtolower($_POST['username']) . "', '";
+			$sql .= strtolower($_POST['email']) . "', '0', CURRENT_TIMESTAMP, '";
 			$sql .= $user_id . "', '";
 			$sql .= $hashedEnteredPass . "');";
 			
@@ -115,7 +115,7 @@
 		if(sizeof($errors) == 0){
 		
 			// Set session variables
-			$_SESSION["username"] = $_POST['username'];
+			$_SESSION["username"] = strtolower($_POST['username']);
 			$_SESSION["user_id"] = $user_id;
 			$_SESSION["is_gold"] = 0;
 			

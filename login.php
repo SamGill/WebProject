@@ -46,7 +46,7 @@
 			    die("Connection failed: " . $conn->connect_error);
 			} 
 			
-			$sql = "SELECT * FROM accounts WHERE username='" . $_POST['username'] . "'";
+			$sql = "SELECT * FROM accounts WHERE username='" . strtolower($_POST['username']) . "'";
 			$result = $conn->query($sql);
 			
 			if ($result === FALSE) {

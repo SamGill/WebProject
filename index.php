@@ -65,7 +65,7 @@
 						<li>
 							<a href="#" id="btn-account" style="color: white;background-color:#558C89;" class="mainButton">
 							<?php
-								echo $_SESSION["username"];
+								echo ucfirst($_SESSION["username"]);
 							?>
 							</a>
 						</li>
