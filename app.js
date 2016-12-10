@@ -150,8 +150,9 @@ $(document).ready(function() {
 		
 		setTaskBarHeight();
 
-		updateGraph();
+		//updateGraph();
 		getTasks();
+		//updateLegend();
 	});
 	$("#tasksBar").load("tasksBar.html", function() {
 		runTaskBarEventHandlers();

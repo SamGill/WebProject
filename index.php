@@ -27,7 +27,9 @@
 		<link rel="stylesheet" href="styles.css">
 		<link rel="stylesheet" href="button.css">
 		<link rel="stylesheet" href="aboutModal.css">
+
 		<link rel="stylesheet" href="zabuto_calendar.min.css">
+		<link rel="stylesheet" href="colors.css">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<!-- Optional theme -->
@@ -49,15 +51,8 @@
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="#" style="color: white;background-color:#558C89;"class="mainButton">Home</a>
-						</li>
-
 						<li>
 							<a href="#" id="btn-toggleTasks" style="color: white;background-color:#558C89;"class="mainButton">Toggle</a>
-						</li>
-						<li>
-							<a href="#" id="btn-filter" style="color: white;background-color:#558C89;"class="mainButton">Filter</a>
 						</li>
 						<li>
 							<a href="#" id="btn-calendar" style="color: white;background-color:#558C89;"class="mainButton">Calendar</a>
