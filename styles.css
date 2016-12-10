@@ -92,3 +92,10 @@ body {
     user-select: none;
 }
 
+.legendLabels {
+	width: 140px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding: 5px;
+}
+

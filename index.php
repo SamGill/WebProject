@@ -49,15 +49,8 @@
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="#" style="color: white;background-color:#558C89;"class="mainButton">Home</a>
-						</li>
-
 						<li>
 							<a href="#" id="btn-toggleTasks" style="color: white;background-color:#558C89;"class="mainButton">Toggle</a>
-						</li>
-						<li>
-							<a href="#" id="btn-filter" style="color: white;background-color:#558C89;"class="mainButton">Filter</a>
 						</li>
 						<li>
 							<a href="#" id="btn-calendar" style="color: white;background-color:#558C89;"class="mainButton">Calendar</a>
