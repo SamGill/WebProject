@@ -32,7 +32,6 @@ function updateGraph() {
 				data.series[i][0] = tasks[i].getTime();
 			else
 				data.series[i][0] = 0;
-				
 			for (var j = 1; j < 14; j++) {
 				data.series[i][j] = 0;
 			}
@@ -47,7 +46,7 @@ function updateGraph() {
 			}
 		}	
 	}
-	
+
 	var maxBarHeight = 0;
 	//get maxBarHeight
 	for (var i = 0; i < tasks.length; i++) {
@@ -66,8 +65,7 @@ function updateGraph() {
 			},
 			onlyInteger : true
 		}
-    };
-	
+	};
 	//new Chartist.Line('.ct-chart', data);
 	new Chartist.Bar('.ct-chart', data, options).on('draw', function(data) {
 		if (data.type === 'bar') {
@@ -137,4 +135,5 @@ function advanceOneWeek() {
 function goBackOneWeek() {
 	weekNum = weekNum - 1;	
 	updateGraph();
-}
+}	
+

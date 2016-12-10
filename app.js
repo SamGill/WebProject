@@ -12,6 +12,13 @@ $(document).ready(function() {
 			openNav();
 		});
 
+		//Toggle "Calendar" Modal
+		$("#btn-calendar").on("click", function() {
+			$("#CalendarModal").css({
+				display : "block"
+			});
+		});
+		
 		//Toggle "About" Modal
 		$("#btn-about").on("click", function() {
 			$("#AboutModal").css({
@@ -118,7 +125,6 @@ $(document).ready(function() {
 				}
 			});
 		});
-		
 		
 		$("#chart_controls_prev").on("click", function() {
 			if(weekNum > 0)

@@ -58,6 +58,9 @@
 						<li>
 							<a href="#" id="btn-filter" style="color: white;background-color:#558C89;"class="mainButton">Filter</a>
 						</li>
+						<li>
+							<a href="#" id="btn-calendar" style="color: white;background-color:#558C89;"class="mainButton">Calendar</a>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right navbar">
 						<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
