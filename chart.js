@@ -20,7 +20,7 @@ function updateGraph() {
 	//setting up the date legend
 	for (var i = 0; i < 14; i++) {
 		var tempDate = new Date();
-		tempDate.setDate(now.getDate() + i);
+		tempDate.setDate(now.getDate() + i + (weekNum * 7));
 		data.labels[i] = (tempDate.getMonth() + 1) + "/" + tempDate.getDate();
 	}
 
@@ -28,7 +28,11 @@ function updateGraph() {
 	for (var i = 0; i < tasks.length; i++) {
 		if(tasks[i].getDaysLeft(now) <= 0)//past the due date
 		{
-			data.series[i][0] = tasks[i].getTime();
+			if(weekNum == 0)//if we aren't looking at the current week, we shouldn't see any of these
+				data.series[i][0] = tasks[i].getTime();
+			else
+				data.series[i][0] = 0;
+				
 			for (var j = 1; j < 14; j++) {
 				data.series[i][j] = 0;
 			}
@@ -36,15 +40,25 @@ function updateGraph() {
 		else//not past due date
 		{
 			for (var j = 0; j < 14; j++) {
-				data.series[i][j] = tasks[i].getTime() - (tasks[i].getDailyTime(now) * j);
+				data.series[i][j] = tasks[i].getTime() - (tasks[i].getDailyTime(now) * (j + ( weekNum * 7)));
 				if (data.series[i][j] < 0) {
 					data.series[i][j] = 0;
 				}
 			}
 		}	
 	}
-
+	
+	var maxBarHeight = 0;
+	//get maxBarHeight
+	for (var i = 0; i < tasks.length; i++) {
+		maxBarHeight += tasks[i].getTime();
+	}
+	
 	options = {
+		high: maxBarHeight,
+        seriesBarDistance: 100,
+        fullWidth: true,
+        height:'85%',
 		stackBars : true,
 		axisY : {
 			labelInterpolationFnc : function(value) {
@@ -52,7 +66,8 @@ function updateGraph() {
 			},
 			onlyInteger : true
 		}
-	}
+    };
+	
 	//new Chartist.Line('.ct-chart', data);
 	new Chartist.Bar('.ct-chart', data, options).on('draw', function(data) {
 		if (data.type === 'bar') {
@@ -114,5 +129,12 @@ function runChartInfoEventHandlers(){
 	});
 }
 
-	
+function advanceOneWeek() {
+	weekNum = weekNum + 1;	
+	updateGraph();
+}
 
+function goBackOneWeek() {
+	weekNum = weekNum - 1;	
+	updateGraph();
+}

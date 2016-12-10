@@ -6,6 +6,7 @@ class Task {
 		this.title = title;
 		this.total_hours = total_hours;
 		this.progress_hours = progress_hours;
+		this.visible = true;
 	}
 	getDaysLeft(fromHere) {
 		//returns the number of hours to work each day based on fromHere and finishDate.
@@ -15,6 +16,8 @@ class Task {
 		return diffDays;
 	}
 	getDailyTime(fromHere) {
+		if(this.getDaysLeft(fromHere) <= 0)
+			return this.getTime();
 		return this.getTime() / this.getDaysLeft(fromHere);
 	}
 	getTime() {
@@ -24,3 +27,4 @@ class Task {
 
 var tasks = [];
 var lastTaskClicked;//this is for keeping track of which task we're updating after we open the update modal
+var weekNum = 0;//at this point we should really make a class for this

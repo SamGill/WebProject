@@ -119,6 +119,16 @@ $(document).ready(function() {
 			});
 		});
 		
+		
+		$("#chart_controls_prev").on("click", function() {
+			if(weekNum > 0)
+				goBackOneWeek();
+		});
+		
+		$("#chart_controls_next").on("click", function() {
+			advanceOneWeek();
+		});
+		
 		setTaskBarHeight();
 
 		updateGraph();

@@ -27,14 +27,9 @@ body {
 }
 
 #mainSection {
-	/*height: 100%;*/
 }
 
 #tasksChart {
-	min-width: 150px;
-	min-height: 100px;
-	max-width: 75%;
-	max-height: 75%;
 }
 
 /*Stuff to do with tasksBar*/
@@ -60,6 +55,12 @@ body {
 	fill: rgba(0,0,0,.6);
 	color: rgba(0,0,0,.6);
 	font-size: 1.5 rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .logo {
@@ -72,4 +73,16 @@ body {
 
 .chartDialogValues {
 	font-weight: bold;
+}
+
+#chart_controls {
+	float: right;
+    z-index: 1000;
+    position: relative; 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
