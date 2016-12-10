@@ -27,4 +27,4 @@ class Task {
 
 var tasks = [];
 var lastTaskClicked;//this is for keeping track of which task we're updating after we open the update modal
-var weekNum = 0;//at this point we should really make a class for this
+var weekNum = 0;//at this point we should really make a class for all this
