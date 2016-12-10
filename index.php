@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<link rel="stylesheet" href="button.css">
 		<link rel="stylesheet" href="aboutModal.css">
+		<link rel="stylesheet" href="zabuto_calendar.min.css">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<!-- Optional theme -->
@@ -85,10 +86,25 @@
 		</nav>
 		<div id="tasksBar" class="sidenav"></div>
 		<div id="mainSection"></div>
+		<div id="CalendarModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" id="closeCalendar">&times;</span>
+				<h2>My Calendar</h2>
+			</div>
+			<div class="modal-body" id="about-modal-body">
+				<div id="my-calendar"></div>
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
 		<div id="accountPage"></div>
 		<div id="chartInfoModal"></div>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
-		<script src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+		<!--<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
+		<script src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -99,6 +115,7 @@
 		<script type="text/javascript" src="chart.js"></script>
 		<script type="text/javascript" src="tasksBar.js"></script>
 		<script type="text/javascript" src="app.js"></script>
+		<script type="text/javascript" src="zabuto_calendar.min.js"></script>
 	</body>
 	<!--for instance!-->
 	<?php

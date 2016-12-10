@@ -1,16 +1,21 @@
+
 $(document).ready(function() {
 	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
 	//THE CHANGES YOU MAKE DON'T APPEAR
 	$.ajaxSetup({
 		cache : false
 	});
+	
+	$("#my-calendar").zabuto_calendar();
 
 	$(window).on('resize', setTaskBarHeight);
 
 	$("#mainSection").load("mainSection.html", function() {
+		
 		$("#btn-toggleTasks").on("click", function() {
 			openNav();
 		});
+		
 
 		//Toggle "Calendar" Modal
 		$("#btn-calendar").on("click", function() {
@@ -42,8 +47,16 @@ $(document).ready(function() {
 			$("#AboutModal").hide();
 		});
 
+		$("#closeCalendar").on("click", function() {
+			$("#CalendarModal").hide();
+		});
+		
 		$(".body").on("click", function() {
 			$("#AboutModal").css({
+				display : "none"
+			});
+			
+			$("#CalendarModal").css({
 				display : "none"
 			});
 		});
@@ -149,5 +162,6 @@ $(document).ready(function() {
 	$("#chartInfoModal").load("chartInfoModal.html", function() {
 		runChartInfoEventHandlers();
 	});
+	
 	
 });
