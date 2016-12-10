@@ -1,3 +1,22 @@
+function getTasksCompleted() {
+	var getRequest = $.get("accountPageGetInfo.php", function (data) {
+		var obj = JSON.parse(data);
+		
+		$("#tasks-completed").html("You've completed " + String(obj.numberTasks) + " tasks.");
+		
+		var htmlInfo = "";
+		if (Number(obj.numberTasks) >= 15) {
+			htmlInfo = "Status: <strong>Gold</strong>. Thanks for using our Website!";	
+		} else {
+			htmlInfo = "Status: <strong>Normal</strong>. Complete " + String(15 - obj.numberTasks) + " more tasks to become gold!";  
+		}
+		$("#account-gold-section").html(htmlInfo);
+	})
+	.fail(function(data) {
+		$("#tasks-completed").html(data);
+	});
+}
+
 function clearPasswordReset() {
 	$("#old-password").val("");
 	$("#new-password").val("");
@@ -25,6 +44,7 @@ function runAccountPageEventHandlers() {
 		$("#accountModal").show();
 		$("#accountInfo").show();
 		$("#resetPasswordInfo").hide();
+		getTasksCompleted();
 	});
 	$(".closeAccount").on("click", function() {
 		$("#accountModal").hide();
@@ -43,4 +63,6 @@ function runAccountPageEventHandlers() {
 		$("#errors-location").html("");
 		clearPasswordReset();
 	});
+	
+	getTasksCompleted();
 }

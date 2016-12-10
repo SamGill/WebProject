@@ -20,19 +20,11 @@ session_start();
 					echo($_SESSION["username"]);
 					?></strong>!
 				</center>
-				<center>
-					You've completed
-					<?php echo($_SESSION["completed_tasks"])?>
-					tasks.
+				<center id="tasks-completed">
+					
 				</center>
-				<center>
-					<?php
-					if ($_SESSION["is_gold"]) {
-						echo("Status: <strong>Gold</strong>. Thanks for using our Website!");
-					} else {
-						echo("Status: <strong>Normal</strong>. Complete " . (15 - $_SESSION["completed_tasks"]) . " more tasks to become gold!");
-					}
-					?>
+				<center id="account-gold-section">
+					
 				</center>
 			</div>
 			<div class="modal-footer">
