@@ -20,6 +20,8 @@ $(document).ready(function() {
 			$("#CalendarModal").css({
 				display : "block"
 			});
+			updateEventData();
+			updateCalendar();
 		});
 		
 		//Toggle "About" Modal
@@ -49,12 +51,20 @@ $(document).ready(function() {
 			$("#CalendarModal").hide();
 		});
 		
+		$("#closeDate").on("click", function() {
+			$("#DateModal").hide();
+		});
+		
 		$(".body").on("click", function() {
 			$("#AboutModal").css({
 				display : "none"
 			});
 			
 			$("#CalendarModal").css({
+				display : "none"
+			});
+			
+			$("#DateModal").css({
 				display : "none"
 			});
 		});
@@ -151,20 +161,6 @@ $(document).ready(function() {
 		//updateGraph();
 		getTasks();
 		//updateLegend();
-		
-		var dataStuff = updateCalendar();
-		
-		$("#my-calendar").zabuto_calendar({
-		  /*cell_border: true,
-		  today: true,
-		  show_days: true,
-		  weekstartson: 0,
-		  nav_icon: {
-			prev: '<i class="fa fa-chevron-circle-left"></i>',
-			next: '<i class="fa fa-chevron-circle-right"></i>'
-		  }*/
-			data: dataStuff
-		});
 	});
 	$("#tasksBar").load("tasksBar.html", function() {
 		runTaskBarEventHandlers();
@@ -174,7 +170,6 @@ $(document).ready(function() {
 	});
 	$("#chartInfoModal").load("chartInfoModal.html", function() {
 		runChartInfoEventHandlers();
-	});
-	
+	});	
 	
 });

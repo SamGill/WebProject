@@ -9,13 +9,7 @@ if (!empty($_REQUEST['year']) && !empty($_REQUEST['month'])) {
     $month = intval($_REQUEST['month']);
     $lastday = intval(strftime('%d', mktime(0, 0, 0, ($month == 12 ? 1 : $month + 1), 0, ($month == 12 ? $year + 1 : $year))));
     $dates = array();
-	
-	for($j = 0; $j <= tasks.length; $j++) {
-		echo($j);
-	}
-	
-	
-    for ($i = 0; $i <= tasks.length; $i++) {
+    for ($i = 0; $i <= (rand(4, 10)); $i++) {
         $date = $year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-' . str_pad(rand(1, $lastday), 2, '0', STR_PAD_LEFT);
         $dates[$i] = array(
             'date' => $date,

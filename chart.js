@@ -174,3 +174,69 @@ function filterTask(item) {
 	updateGraph();
 }
 
+function updateCalendar() {	
+	$("#my-calendar").zabuto_calendar({
+			action: function () {
+                return displayInfo(this.id, false);
+            },
+			legend: eventLegendData,
+			/*ajax: {
+				url: "updateCalendar.php"
+				//modal: true
+			}*/
+			data: eventData
+		});
+}
+
+function updateEventData() {
+	var alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	
+	for(var i = 0; i < tasks.length; i++) {
+		if(tasks[i] != null) {
+			var newDate = formatDate(tasks[i].goal_date)
+			var newTask = {"date": newDate,"badge":false,"title":tasks[i].title, "classname": "color-" + alpha[i]};
+			eventData.push(newTask);
+			var newLegend = {type: "block", label: tasks[i].title, classname: "color-" + alpha[i]};
+			eventLegendData.push(newLegend);
+		}
+	}
+}
+
+function displayInfo(id, fromModal) {
+	
+	$("#DateModal").css({
+		display : "block"
+	});
+	
+	var testDate = $("#" + id).data("date");
+	var newTitle = "";
+	for(var i = 0; i < tasks.length; i++) {
+		if(formatDate(tasks[i].goal_date) == testDate) {
+			newTitle = tasks[i].title;
+		}
+	}
+	if(testDate != null) {
+		$("#dateModalBody").replaceWith("<div class=\"modal-body\" id='dateModalBody'><center>" + newTitle + "</div>");
+	}
+	
+}
+
+function myDateFunction(id, fromModal) {
+        $("#date-popover").hide();
+        if (fromModal) {
+            $("#" + id + "_modal").modal("hide");
+        }
+        var date = $("#" + id).data("date");
+        var hasEvent = $("#" + id).data("hasEvent");
+        if (hasEvent && !fromModal) {
+            return false;
+        }
+        $("#date-popover-content").html('You clicked on date ' + date);
+        $("#date-popover").show();
+        return true;
+    }
+
+var eventData = [];
+
+var eventLegendData = [];
+

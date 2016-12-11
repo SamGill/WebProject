@@ -27,7 +27,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<link rel="stylesheet" href="button.css">
 		<link rel="stylesheet" href="aboutModal.css">
-
+		<link rel="stylesheet" href="myCalendar.css">
 		<link rel="stylesheet" href="zabuto_calendar.min.css">
 		<link rel="stylesheet" href="colors.css">
 		<!-- Latest compiled and minified CSS -->
@@ -83,13 +83,26 @@
 		<div id="mainSection"></div>
 		<div id="CalendarModal" class="modal">
 		<!-- Modal content -->
-		<div class="modal-content">
-			<div class="modal-header">
-				<span class="close" id="closeCalendar">&times;</span>
-				<h2>My Calendar</h2>
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close" id="closeCalendar">&times;</span>
+					<h2>My Calendar</h2>
+				</div>
+				<div class="modal-body" id="about-modal-body">
+					<div id="my-calendar"></div>
+				</div>
+				<div class="modal-footer">
+				</div>
 			</div>
-			<div class="modal-body" id="about-modal-body">
-				<div id="my-calendar"></div>
+		</div>
+		<div id="DateModal" class="modal">
+		<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close" id="closeDate">&times;</span>
+					<h2 id="dateHeader">My Assignment</h2>
+				</div>
+				<div class="modal-body" id="dateModalBody">
 				</div>
 				<div class="modal-footer">
 				</div>

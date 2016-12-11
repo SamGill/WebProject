@@ -23,6 +23,14 @@ class Task {
 	getTime() {
 		return this.total_hours - this.progress_hours;
 	}
+	
+	getGoalDate() {
+		return this.goal_date;
+	}
+	
+	getTitle() {
+		return this.title;
+	}
 }
 
 var tasks = [];
