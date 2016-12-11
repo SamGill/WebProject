@@ -33,24 +33,6 @@ body {
 }
 
 /*Stuff to do with tasksBar*/
-#tasksBar {
-	background-color: #74AFAD;
-	font-family: PT-Sans;
-	font-size: 1.2em;
-}
-
-#btn-addTask {
-	float: right;
-}
-
-.task-input {
-	display: none;
-}
-
-#addTasksDialog {
-	display: none;
-}
-
 .ct-label {
 	fill: rgba(0,0,0,.6);
 	color: rgba(0,0,0,.6);

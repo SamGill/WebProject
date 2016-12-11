@@ -20,15 +20,20 @@ function setTaskBarHeight() {
 
 function addRow(name, date, estimate, progress, id) {
 
-	var nameHtml = "<div>Name: <span class = 'taskName'>" + String(name) + "</span>" + "<input class='task-input' val='" + String(name) + "'/></div>";
-	var dateHtml = "<div>Due: <span class = 'taskDate'>" + String(date) + "</span>" + "<input class='task-input date-input' val='" + String(date) + "'/></div>";
-	var estimateHtml = "<div>Time: <span class = 'taskEstimate'>" + String(estimate) + "</span>" + "<input class='task-input' val='" + String(estimate) + "'/></div>";
-	var progressHtml = "<div>Progress: <span class = 'taskProgress'>" + String(progress) + "</span>" + "<input class='task-input' val='" + String(progress) + "'/></div>";
+	var nameHtml = "<div><span class = 'taskName'>" + String(name) + "</span></div>";
+	var dateHtml = "<div>Due: <span class = 'taskDate'>" + String(date) + "</span></div>";
+	var estimateHtml = "<div>Time: <span class = 'taskEstimate'>" + String(estimate) + "</span></div>";
+	var progressHtml = "<div>Progress: <span class = 'taskProgress'>" + String(progress) + "</span></div>";
 	var hiddenData = "<p hidden id='id'>" + id + "</p>";
 
-	var sideButtons = "<button onclick='deleteTask(event, this)'>X</button>" + "<br/>" + "<button onclick='checkTask(event, this)'>Check</button>";
 
-	var html = "<tr class='taskRow'>" + "<td>" + nameHtml + dateHtml + estimateHtml + progressHtml + hiddenData + "</td>" + "<td>" + sideButtons + "</td>" + "</tr>";
+	var sideButtons = "<button onclick='deleteTask(event, this)' class='btn btn-danger btn-circle removeTaskBtn'>" +  
+	'<i class="glyphicon glyphicon-remove"></i>'
+	+ "</button>" + 
+	"<br/>" + 
+	"<button onclick='checkTask(event, this)' class='btn btn-success btn-circle checkTaskBtn'>&#10004</button>";
+
+	var html = "<tr class='taskRow'>" + "<td class='info'>" + nameHtml + "<div class='small-spacing'>" + dateHtml + estimateHtml + progressHtml + "</div>" + hiddenData + "</td>" + "<td>" + sideButtons + "</td></tr>";
 
 	$("#tasksTable tbody").append(html);
 }
