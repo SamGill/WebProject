@@ -5,8 +5,6 @@ $(document).ready(function() {
 	$.ajaxSetup({
 		cache : false
 	});
-	
-	$("#my-calendar").zabuto_calendar();
 
 	$(window).on('resize', setTaskBarHeight);
 
@@ -153,6 +151,20 @@ $(document).ready(function() {
 		//updateGraph();
 		getTasks();
 		//updateLegend();
+		
+		var dataStuff = updateCalendar();
+		
+		$("#my-calendar").zabuto_calendar({
+		  /*cell_border: true,
+		  today: true,
+		  show_days: true,
+		  weekstartson: 0,
+		  nav_icon: {
+			prev: '<i class="fa fa-chevron-circle-left"></i>',
+			next: '<i class="fa fa-chevron-circle-right"></i>'
+		  }*/
+			data: dataStuff
+		});
 	});
 	$("#tasksBar").load("tasksBar.html", function() {
 		runTaskBarEventHandlers();

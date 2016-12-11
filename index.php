@@ -109,6 +109,7 @@
 		<script type="text/javascript" src="database_connections.js"></script>
 		<script type="text/javascript" src="chart.js"></script>
 		<script type="text/javascript" src="tasksBar.js"></script>
+		<script type="text/javascript" src="myCalendar.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 		<script type="text/javascript" src="zabuto_calendar.min.js"></script>
 	</body>
