@@ -1,17 +1,29 @@
+
 $(document).ready(function() {
 	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
 	//THE CHANGES YOU MAKE DON'T APPEAR
 	$.ajaxSetup({
 		cache : false
 	});
+	
+	$("#my-calendar").zabuto_calendar();
 
 	$(window).on('resize', setTaskBarHeight);
 
 	$("#mainSection").load("mainSection.html", function() {
+		
 		$("#btn-toggleTasks").on("click", function() {
 			openNav();
 		});
+		
 
+		//Toggle "Calendar" Modal
+		$("#btn-calendar").on("click", function() {
+			$("#CalendarModal").css({
+				display : "block"
+			});
+		});
+		
 		//Toggle "About" Modal
 		$("#btn-about").on("click", function() {
 			$("#AboutModal").css({
@@ -35,8 +47,16 @@ $(document).ready(function() {
 			$("#AboutModal").hide();
 		});
 
+		$("#closeCalendar").on("click", function() {
+			$("#CalendarModal").hide();
+		});
+		
 		$(".body").on("click", function() {
 			$("#AboutModal").css({
+				display : "none"
+			});
+			
+			$("#CalendarModal").css({
 				display : "none"
 			});
 		});
@@ -119,7 +139,6 @@ $(document).ready(function() {
 			});
 		});
 		
-		
 		$("#chart_controls_prev").on("click", function() {
 			if(weekNum > 0)
 				goBackOneWeek();
@@ -131,8 +150,9 @@ $(document).ready(function() {
 		
 		setTaskBarHeight();
 
-		updateGraph();
+		//updateGraph();
 		getTasks();
+		//updateLegend();
 	});
 	$("#tasksBar").load("tasksBar.html", function() {
 		runTaskBarEventHandlers();
@@ -143,5 +163,6 @@ $(document).ready(function() {
 	$("#chartInfoModal").load("chartInfoModal.html", function() {
 		runChartInfoEventHandlers();
 	});
+	
 	
 });

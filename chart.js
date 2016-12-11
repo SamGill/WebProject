@@ -26,13 +26,18 @@ function updateGraph() {
 
 	//setting the bars
 	for (var i = 0; i < tasks.length; i++) {
-		if(tasks[i].getDaysLeft(now) <= 0)//past the due date
+		if(!tasks[i].visible)
+		{
+			for (var j = 0; j < 14; j++) {
+				data.series[i][j] = 0;
+			}
+		}
+		else if(tasks[i].getDaysLeft(now) <= 0)//past the due date
 		{
 			if(weekNum == 0)//if we aren't looking at the current week, we shouldn't see any of these
 				data.series[i][0] = tasks[i].getTime();
 			else
 				data.series[i][0] = 0;
-				
 			for (var j = 1; j < 14; j++) {
 				data.series[i][j] = 0;
 			}
@@ -47,29 +52,33 @@ function updateGraph() {
 			}
 		}	
 	}
-	
+
 	var maxBarHeight = 0;
 	//get maxBarHeight
 	for (var i = 0; i < tasks.length; i++) {
-		maxBarHeight += tasks[i].getTime();
+		if(tasks[i].visible)
+			maxBarHeight += tasks[i].getTime();
 	}
 	
 	options = {
 		high: maxBarHeight,
         seriesBarDistance: 100,
         fullWidth: true,
-        height:'85%',
 		stackBars : true,
 		axisY : {
 			labelInterpolationFnc : function(value) {
 				return value;
 			},
 			onlyInteger : true
-		}
+		},
+		axisX: {
+	        showGrid: false,
+	        // This value specifies the minimum width in pixel of the scale steps
+	        scaleMinSpace: 40
+      	}
     };
-	
 	//new Chartist.Line('.ct-chart', data);
-	new Chartist.Bar('.ct-chart', data, options).on('draw', function(data) {
+	new Chartist.Bar('.ct-chart', data, options).on('draw', function(data, i) {
 		if (data.type === 'bar') {
 			data.element.attr({
 				style : 'stroke-width: 5%',
@@ -77,12 +86,23 @@ function updateGraph() {
 			});
 		}
 	});
+	updateLegend();
 }
 
-//Legend functions
-function setLegend() {
-	var rowCount = $("#tasksTable tr");
-	console.log(rowCount);
+
+function updateLegend(){
+	var alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	
+	$("#legendContent").html("");
+	for(var i = 0; i < tasks.length; i++)
+	{
+		var newElement;
+		if(tasks[i].visible)
+			newElement = "<label class='legendLabels color-" + alpha[i] + "'><input type='checkbox' id='" + tasks[i].task_id + "' onClick='filterTask(this)' checked> " + tasks[i].title + "</label>";
+		else
+			newElement = "<label class='legendLabels color-" + alpha[i] + "'><input type='checkbox' id='" + tasks[i].task_id + "' onClick='filterTask(this)'> " + tasks[i].title + "</label>";
+		$(legendContent).append(newElement);
+	}	
 }
 
 function chartBoxClick(box){
@@ -138,3 +158,19 @@ function goBackOneWeek() {
 	weekNum = weekNum - 1;	
 	updateGraph();
 }
+
+function filterTask(item) {
+	var id = $(item).attr("id");
+	for(var i = 0; i < tasks.length; i++)
+	{
+		if(tasks[i].task_id == id)
+		{
+			if(tasks[i].visible)
+				tasks[i].visible = false;
+			else
+				tasks[i].visible = true;
+		}
+	}
+	updateGraph();
+}
+

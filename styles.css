@@ -27,9 +27,11 @@ body {
 }
 
 #mainSection {
+
 }
 
 #tasksChart {
+
 }
 
 /*Stuff to do with tasksBar*/
@@ -37,7 +39,7 @@ body {
 	fill: rgba(0,0,0,.6);
 	color: rgba(0,0,0,.6);
 	font-size: 1.5 rem;
-    -webkit-touch-callout: none;
+	-webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -58,8 +60,11 @@ body {
 }
 
 #chart_controls {
+	font-size: 14pt;
+	margin-right: 25px;
+	margin-top: 15px;
 	float: right;
-    z-index: 1000;
+    z-index: 99;
     position: relative; 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -68,3 +73,11 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+.legendLabels {
+	width: 140px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding: 5px;
+}
+
