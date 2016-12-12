@@ -1,3 +1,20 @@
+function showAboutModal() {
+	$("#AboutModal").show();
+	$("#about-modal-body").html("<center>This web app was created by some passionate developers, just for you!</center>" + 
+	"<center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center>"
+	+ "<center id=\"ctr-name\">Garth Murray</center>");
+}
+
+function closeAboutModal() {
+	$("#about-modal-body").html("<center>This web app was created by some passionate developers, just for you!</center>" + 
+	"<center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center>"
+	+ "<center id=\"ctr-name\">Garth Murray</center>");
+			
+	$("#btn-cancel-contact").hide();
+	$("#btn-submit-contact").hide();
+	$("#btn-contact").show();
+	$("#AboutModal").hide();
+}
 
 $(document).ready(function() {
 	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
@@ -9,11 +26,10 @@ $(document).ready(function() {
 	$(window).on('resize', setTaskBarHeight);
 
 	$("#mainSection").load("mainSection.html", function() {
-		
+
 		$("#btn-toggleTasks").on("click", function() {
 			openNav();
 		});
-		
 
 		//Toggle "Calendar" Modal
 		$("#btn-calendar").on("click", function() {
@@ -21,47 +37,33 @@ $(document).ready(function() {
 				display : "block"
 			});
 		});
-		
+
 		//Toggle "About" Modal
 		$("#btn-about").on("click", function() {
-			$("#AboutModal").css({
-				display : "block"
-			});
+			showAboutModal();
 		});
 
 		$("#closeContact").on("click", function() {
-
-			$("#about-modal-body").replaceWith("<div class=\"modal-body\" id='about-modal-body'><center>This web app was created by some passionate developers, just for you!</center><center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center><center id=\"ctr-name\">Garth Murray</center></div>");
-
-			$("#btn-cancel-contact").css({
-				display : "none"
-			});
-			$("#btn-submit-contact").css({
-				display : "none"
-			});
-			$("#btn-contact").css({
-				display : "block"
-			});
-			$("#AboutModal").hide();
+			closeAboutModal();
 		});
 
 		$("#closeCalendar").on("click", function() {
 			$("#CalendarModal").hide();
 		});
-		
+
 		$("#closeDate").on("click", function() {
 			$("#DateModal").hide();
 		});
-		
+
 		$(".body").on("click", function() {
 			$("#AboutModal").css({
 				display : "none"
 			});
-			
+
 			$("#CalendarModal").css({
 				display : "none"
 			});
-			
+
 			$("#DateModal").css({
 				display : "none"
 			});
@@ -70,7 +72,7 @@ $(document).ready(function() {
 		//Modal "Contact Us" button
 		$("#btn-contact").on("click", function() {
 			$("#about-modal-body").fadeOut('slow', function() {
-				$("#about-modal-body").replaceWith("<div class=\"modal-body\" id='about-modal-body'><form id=\"emailForm\" method=\"POST\" action =\"email.php\"<div class=\"form-group\"><textarea class=\"form-control\" name=\"emailContent\" rows=\"10\">");
+				$("#about-modal-body").html("<form id=\"emailForm\" method=\"POST\" action =\"email.php\"<div class=\"form-group\"><textarea class=\"form-control\" name=\"emailContent\" rows=\"10\">");
 				$("#about-modal-body").fadeIn('slow').slideDown('slow');
 				//Sets timeout so textbox can appear before focusing
 				setTimeout(function() {
@@ -96,9 +98,9 @@ $(document).ready(function() {
 		});
 
 		//Modal Cancel Button
-		$("#btn-cancel-contact").on("click", function() {
+		$("#btn-cancel-contact, #closeContact").on("click", function() {
 			$("#about-modal-body").fadeOut('slow', function() {
-				$("#about-modal-body").replaceWith("<div class=\"modal-body\"><center>This web app was created by some passionate developers, just for you!</center><center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center><center id=\"ctr-name\">Garth Murray</center></div>");
+				$("#about-modal-body").html("<center>This web app was created by some passionate developers, just for you!</center><center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center><center id=\"ctr-name\">Garth Murray</center>");
 				$("#about-modal-body").fadeIn('slow');
 			});
 			$("#btn-cancel-contact").fadeOut('slow', function() {
@@ -121,22 +123,24 @@ $(document).ready(function() {
 		//Modal submit button
 		$("#btn-submit-contact").on("click", function() {
 			//$("#emailForm").submit();
+			$(this).hide();
+			$('#btn-cancel-contact').hide();
 			$.ajax({
 				url : "email.php",
 				type : 'POST',
 				data : $("#emailForm").serialize(),
 
 				success : function(data) {
-					$(".modal-body").fadeOut('slow', function() {
-						$(".modal-body").replaceWith("<div class=\"modal-body\"><center>Message sent successfuly!</center></div>");
-						$(".modal-body").fadeIn('slow');
+					$("#about-modal-body").fadeOut(function() {
+						$("#about-modal-body").html("<center>Message sent successfuly!</center>");
+						$("#about-modal-body").fadeIn('slow');
 					});
-					$("#btn-cancel-contact").fadeOut('slow', function() {
+					$("#btn-cancel-contact").fadeOut(function() {
 						$("#btn-cancel-contact").css({
 							display : "none"
 						});
 					});
-					$("#btn-submit-contact").fadeOut('slow', function() {
+					$("#btn-submit-contact").fadeOut(function() {
 						$("#btn-submit-contact").css({
 							display : "none"
 						});
@@ -144,16 +148,16 @@ $(document).ready(function() {
 				}
 			});
 		});
-		
+
 		$("#chart_controls_prev").on("click", function() {
-			if(weekNum > 0)
+			if (weekNum > 0)
 				goBackOneWeek();
 		});
-		
+
 		$("#chart_controls_next").on("click", function() {
 			advanceOneWeek();
 		});
-		
+
 		setTaskBarHeight();
 
 		//updateGraph();
@@ -168,6 +172,6 @@ $(document).ready(function() {
 	});
 	$("#chartInfoModal").load("chartInfoModal.html", function() {
 		runChartInfoEventHandlers();
-	});	
-	
+	});
+
 });
