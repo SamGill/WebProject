@@ -2,10 +2,20 @@ var greenBackground = "#558C89 !important";
 var otherBackground = "#D2B48C !important";
 
 function changeBackground() {
-	$('.greenBackground').each(function(index) {
-		$(this).removeClass('greenBackground');
-		$(this).addClass('otherBackground');
-	});
+	var n = $('.greenBackground').length;
+
+	if (n === 0) {
+		$('.otherBackground').each(function(index) {
+			$(this).removeClass('otherBackground');
+			$(this).addClass('greenBackground');
+		});
+	} else {
+		$('.greenBackground').each(function(index) {
+			$(this).removeClass('greenBackground');
+			$(this).addClass('otherBackground');
+		});
+	}
+
 }
 
 function setBackground(color) {
@@ -33,7 +43,7 @@ function closeAboutModal() {
 
 
 $(document).ready(function() {
-	
+
 	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
 	//THE CHANGES YOU MAKE DON'T APPEAR
 	$.ajaxSetup({
