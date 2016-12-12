@@ -20,8 +20,6 @@ $(document).ready(function() {
 			$("#CalendarModal").css({
 				display : "block"
 			});
-			updateEventData();
-			updateCalendar();
 		});
 		
 		//Toggle "About" Modal

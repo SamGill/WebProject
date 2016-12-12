@@ -1,3 +1,7 @@
+var eventData = [];
+
+var eventLegendData = [];
+
 function updateGraph() {
 	//gives us the current time (used multiple places below)
 	var now = new Date();
@@ -87,6 +91,9 @@ function updateGraph() {
 		}
 	});
 	updateLegend();
+	//updateEventData();
+	//updateCalendar();
+	$.when(updateEventData()).then(updateCalendar());
 }
 
 
@@ -152,6 +159,7 @@ function runChartInfoEventHandlers(){
 function advanceOneWeek() {
 	weekNum = weekNum + 1;	
 	updateGraph();
+	$("")
 }
 
 function goBackOneWeek() {
@@ -175,21 +183,26 @@ function filterTask(item) {
 }
 
 function updateCalendar() {	
+	$("#my-calendar").empty();
 	$("#my-calendar").zabuto_calendar({
-			action: function () {
-                return displayInfo(this.id, false);
-            },
-			legend: eventLegendData,
-			/*ajax: {
-				url: "updateCalendar.php"
-				//modal: true
-			}*/
-			data: eventData
-		});
+		action: function () {
+			return displayInfo(this.id, false);
+		},
+		legend: eventLegendData,
+		/*ajax: {
+			url: "updateCalendar.php"
+			//modal: true
+		}*/
+		data: eventData
+	});
 }
 
 function updateEventData() {
 	var alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	
+	//Clear eventData array
+	eventData.length = 0;
+	eventLegendData.length = 0;
 	
 	for(var i = 0; i < tasks.length; i++) {
 		if(tasks[i] != null) {
@@ -200,6 +213,7 @@ function updateEventData() {
 			eventLegendData.push(newLegend);
 		}
 	}
+
 }
 
 function displayInfo(id, fromModal) {
@@ -208,35 +222,53 @@ function displayInfo(id, fromModal) {
 		display : "block"
 	});
 	
-	var testDate = $("#" + id).data("date");
+	var testTitle = $("#" + id).attr("title");
+	var checkEvent = $("#" + id).data("hasEvent");
 	var newTitle = "";
+	
+	var testTotalHours = "";
+	var testProgressHours = "";
+	var percentComplete = 0; 
+	
 	for(var i = 0; i < tasks.length; i++) {
-		if(formatDate(tasks[i].goal_date) == testDate) {
+		if(tasks[i].title == testTitle) {
 			newTitle = tasks[i].title;
+			testTotalHours = tasks[i].total_hours;
+			testProgressHours = tasks[i].progress_hours;
+			percentComplete = 100 * tasks[i].progress_hours / tasks[i].total_hours;
 		}
 	}
-	if(testDate != null) {
-		$("#dateModalBody").replaceWith("<div class=\"modal-body\" id='dateModalBody'><center>" + newTitle + "</div>");
+	var headerTest = $("h2#dateHeader");
+		if(checkEvent) {
+			headerTest.text(newTitle);
+		}
+		else {
+			headerTest.text("My Assignment");
+		}
+	if(testTitle != null) {
+		$("#dateModalBody").replaceWith("<div class=\"modal-body\" id='dateModalBody'><center>" + newTitle + "</center><center>" + "Total Hours: " + testTotalHours + "</center><center>Progress Hours: " + testProgressHours + "</center><center>Percentage Complete: " + percentComplete.toFixed(2) + "%</center></div>");
+	}
+	else {
+		$("#dateModalBody").replaceWith("<div class=\"modal-body\" id='dateModalBody'><center>" + "" + "</center></div>");
 	}
 	
 }
 
 function myDateFunction(id, fromModal) {
-        $("#date-popover").hide();
-        if (fromModal) {
-            $("#" + id + "_modal").modal("hide");
-        }
-        var date = $("#" + id).data("date");
-        var hasEvent = $("#" + id).data("hasEvent");
-        if (hasEvent && !fromModal) {
-            return false;
-        }
-        $("#date-popover-content").html('You clicked on date ' + date);
-        $("#date-popover").show();
-        return true;
-    }
+	$("#date-popover").hide();
+	if (fromModal) {
+		$("#" + id + "_modal").modal("hide");
+	}
+	var date = $("#" + id).data("date");
+	var hasEvent = $("#" + id).data("hasEvent");
+	if (hasEvent && !fromModal) {
+		return false;
+	}
+	$("#date-popover-content").html('You clicked on date ' + date);
+	$("#date-popover").show();
+	return true;
+}
 
-var eventData = [];
 
-var eventLegendData = [];
+
 
