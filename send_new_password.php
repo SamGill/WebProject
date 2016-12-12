@@ -39,7 +39,7 @@ $mail->isSMTP();
 	$mail->SetFrom('LevelTeam@gmail.com', 'Level.Effort');
 	$mail->Subject = "Level.Effort Mailer";
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
-		$msg = 'Hello from the Level.Effort!<br/><br/>You\'re new password is: <strong>' . 
+		$msg = 'Hello from the Level.Effort!<br/><br/>Your new password is: <strong>' . 
 		$_POST["password"] . '</strong><br/><br/>If you didn\'t initiate the password recovery something fishy is going on.<br/><br/>' .
 		'You probs should get on that. Just saying\'<br/><br/>' .
 		'Sincerely,<br/><br/>The Level.Effort Team';
