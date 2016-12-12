@@ -1,3 +1,12 @@
+.greenBackground {
+	background-color: #558C89 !important;
+}
+
+.otherBackground {
+	background-color: #D2B48C !important;
+}
+
+
 .mainButton {
 	border-radius: 10px;
 	background-color: yellow;

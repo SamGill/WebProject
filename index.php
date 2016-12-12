@@ -38,7 +38,7 @@
 		<link rel="stylesheet" type="text/css" href="overlay.css">
 	</head>
 	<body>
-		<nav class="navbar navbar-light" id="navContainer" style="background-color: #558C89;">
+		<nav class="navbar navbar-light greenBackground" id="navContainer">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="border-color: #ECECEA;">
@@ -52,59 +52,69 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="#" id="btn-toggleTasks" style="color: white;background-color:#558C89;"class="mainButton">Toggle</a>
+							<a href="#" id="btn-toggleTasks" style="color: white;"class="mainButton greenBackground">Show Tasks</a>
 						</li>
 						<li>
-							<a href="#" id="btn-calendar" style="color: white;background-color:#558C89;"class="mainButton">Calendar</a>
+							<a href="#" id="btn-calendar" style="color: white;"class="mainButton greenBackground">Calendar</a>
 						</li>
+						<?php
+							//if($_SESSION["is_gold"] != 0){
+									//Do stuff for gold users!
+								echo("<li>" .
+								"<a href='#' id='btn-change-background' onclick='changeBackground()' style='color: white;' class='mainButton greenBackground'>Change Color</a>"
+								."</li>"						
+								 );
+							//}
+						?>
+						
 					</ul>
 					<ul class="nav navbar-nav navbar-right navbar">
 						<!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
 						<!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
 						<li>
-							<a href="#" id="btn-account" style="color: white;background-color:#558C89;" class="mainButton">
+							<a href="#" id="btn-account" style="color: white;" class="mainButton greenBackground">
 							<?php
 								echo ucfirst($_SESSION["username"]);
 							?>
 							</a>
 						</li>
 						<li>
-							<a href="logout.php" id="btn-logout" style="color: white; background-color:#558C89; border-color: white" class="mainButton">Logout</a>
+							<a href="logout.php" id="btn-logout" style="color: white; border-color: white" class="mainButton greenBackground">Logout</a>
 						</li>
 						<li>
-							<a href="#" id="btn-about" style="color: white; background-color:#558C89; border-color: white" class="mainButton">About</a>
+							<a href="#" id="btn-about" style="color: white; border-color: white" class="mainButton greenBackground">About</a>
 						</li>
 
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<div id="tasksBar" class="sidenav"></div>
+		<div id="tasksBar" class="sidenav greenBackground"></div>
 		<div id="mainSection"></div>
 		<div id="CalendarModal" class="modal">
 		<!-- Modal content -->
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header greenBackground">
 					<span class="close" id="closeCalendar">&times;</span>
 					<h2>My Calendar</h2>
 				</div>
 				<div class="modal-body" id="about-modal-body">
 					<div id="my-calendar"></div>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer greenBackground">
 				</div>
 			</div>
 		</div>
 		<div id="DateModal" class="modal">
 		<!-- Modal content -->
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header greenBackground">
 					<span class="close" id="closeDate">&times;</span>
 					<h2 id="dateHeader">My Assignment</h2>
 				</div>
 				<div class="modal-body" id="dateModalBody">
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer greenBackground">
 				</div>
 			</div>
 		</div>

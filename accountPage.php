@@ -4,13 +4,10 @@ session_start();
 <!DOCTYPE html>
 
 <div id="accountModal" class="modal">
-	<!-- Modal content -->
-	
-	
-		
+	<!-- Modal content -->	
 	<div id="accountInfo">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header greenBackground">
 				<span class="close closeAccount">&times; </span>
 				<h2>My Account </h2>
 			</div>
@@ -27,7 +24,7 @@ session_start();
 					
 				</center>
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer greenBackground">
 				<div class="row">
 					<div class="col-sm-2 text-center">
 						<footer style="float:left">
@@ -49,10 +46,7 @@ session_start();
 	</div>
 	</div>
 	<div class="modal-content" style="margin-top: 0%;">
-		
-		
-		
-		<div class="modal-header">
+		<div class="modal-header greenBackground">
 			<span class="close closeAccount">&times; </span>
 			<h2> Reset Password </h2>
 		</div>
@@ -72,7 +66,7 @@ session_start();
 				</div>
 			</form>
 		</div>
-		<div class="modal-footer">
+		<div class="modal-footer greenBackground">
 			<div class="row">
 				<div class="col-sm-6 text-center">
 					<button type="button" class="btn btn-warning center-block" id="btn-cancel-reset-password">

@@ -1,22 +1,39 @@
+var greenBackground = "#558C89 !important";
+var otherBackground = "#D2B48C !important";
+
+function changeBackground() {
+	$('.greenBackground').each(function(index) {
+		$(this).removeClass('greenBackground');
+		$(this).addClass('otherBackground');
+	});
+}
+
+function setBackground(color) {
+	if (color === "green") {
+		$('.modal-header, .modal-footer').each(function(index) {
+			$(this).addClass('greenBackground');
+			$(this).removeClass('otherBackground');
+		});
+	}
+}
+
 function showAboutModal() {
 	$("#AboutModal").show();
-	$("#about-modal-body").html("<center>This web app was created by some passionate developers, just for you!</center>" + 
-	"<center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center>"
-	+ "<center id=\"ctr-name\">Garth Murray</center>");
+	$("#about-modal-body").html("<center>This web app was created by some passionate developers, just for you!</center>" + "<center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center>" + "<center id=\"ctr-name\">Garth Murray</center>");
 }
 
 function closeAboutModal() {
-	$("#about-modal-body").html("<center>This web app was created by some passionate developers, just for you!</center>" + 
-	"<center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center>"
-	+ "<center id=\"ctr-name\">Garth Murray</center>");
-			
+	$("#about-modal-body").html("<center>This web app was created by some passionate developers, just for you!</center>" + "<center id=\"ctr-name\">Sam Gill</center><center id=\"ctr-name\">Jonathan Worobey</center>" + "<center id=\"ctr-name\">Garth Murray</center>");
+
 	$("#btn-cancel-contact").hide();
 	$("#btn-submit-contact").hide();
 	$("#btn-contact").show();
 	$("#AboutModal").hide();
 }
 
+
 $(document).ready(function() {
+	
 	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
 	//THE CHANGES YOU MAKE DON'T APPEAR
 	$.ajaxSetup({
