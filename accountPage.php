@@ -5,9 +5,9 @@ session_start();
 
 <div id="accountModal" class="modal">
 	<!-- Modal content -->
-	<div class="col-md-6 col-md-offset-3" id="errors-location">
-
-	</div>
+	
+	
+		
 	<div id="accountInfo">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -44,7 +44,14 @@ session_start();
 		</div>
 	</div>
 <div id="resetPasswordInfo">
-	<div class="modal-content">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3" id="errors-location" style="margin-top: 10%">
+	</div>
+	</div>
+	<div class="modal-content" style="margin-top: 0%;">
+		
+		
+		
 		<div class="modal-header">
 			<span class="close closeAccount">&times; </span>
 			<h2> Reset Password </h2>
