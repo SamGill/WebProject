@@ -140,15 +140,28 @@ function runTaskBarEventHandlers() {
 	});
 
 	$("#btn-addTask").on("click", function() {
-		$("#addTaskDialog").dialog("open");
-	});
-
+		if(tasks.length < 26) {
+			$("#addTaskDialog").dialog("open");
+		}
+		else {
+			$("#taskErrorDialog").dialog("open");
+		}
+	});	
+	
 	$("#addTaskDialog").dialog({
 		autoOpen : false,
 		modal : true,
 		close : function() {
 			clearAddTask();
 		}
+	});
+	
+	$("#taskErrorDialog").dialog({
+		autoOpen : false,
+		modal : true,
+		/*close : function() {
+			clearAddTask();
+		}*/
 	});
 
 	var offset = $("#extraEdit").height();
