@@ -43,6 +43,7 @@
 	/*background-color: #74AFAD;*/
 	font-family: PT-Sans;
 	font-size: 1.2em;
+	overflow: hidden;
 }
 
 #btn-addTask {
