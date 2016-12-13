@@ -57,8 +57,8 @@ function updateGraph() {
 		}	
 	}
 
-	var maxBarHeight = 0;
 	//get maxBarHeight
+	var maxBarHeight = 0;
 	for (var i = 0; i < tasks.length; i++) {
 		if(tasks[i].visible)
 			maxBarHeight += tasks[i].getTime();
@@ -67,8 +67,8 @@ function updateGraph() {
 	options = {
 		high: maxBarHeight,
         seriesBarDistance: 100,
-        fullWidth: true,
-		stackBars : true,
+		width: '100%',
+		height: '100%',
 		axisY : {
 			labelInterpolationFnc : function(value) {
 				return value;
