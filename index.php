@@ -54,17 +54,19 @@
 						<li>
 							<a href="#" id="btn-toggleTasks" style="color: white;"class="mainButton greenBackground">Show Tasks</a>
 						</li>
-						<li>
-							<a href="#" id="btn-calendar" style="color: white;"class="mainButton greenBackground">Calendar</a>
-						</li>
 						<?php
-							//if($_SESSION["is_gold"] != 0){
-									//Do stuff for gold users!
+							if($_SESSION["is_gold"] != 0){
+								//calendar 
+								echo("<li>" .
+									 "<a href='#' id='btn-calendar' style='color: white;' class='mainButton greenBackground'>Calendar</a>" .
+									 "</li>");
+								
+								///background color
 								echo("<li>" .
 								"<a href='#' id='btn-change-background' onclick='changeBackground()' style='color: white;' class='mainButton greenBackground'>Change Color</a>"
 								."</li>"						
 								 );
-							//}
+							}
 						?>
 						
 					</ul>
@@ -136,11 +138,4 @@
 		<script type="text/javascript" src="app.js"></script>
 		<script type="text/javascript" src="zabuto_calendar.min.js"></script>
 	</body>
-	<!--for instance!-->
-	<?php
-		if($_SESSION["is_gold"] != 0){
-			echo '<img src="http://25.media.tumblr.com/7747602ffb00f8bca26d2ecef35a682b/tumblr_mslx9kWDn11rkumvuo1_400.gif">';
-		}
-	?>
-	<!--delete this bullcrap later-->
 </html>

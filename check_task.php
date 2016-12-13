@@ -61,7 +61,10 @@
 			if ($conn->query($sql) === FALSE) {
 				echo "Failed to connect to the database: " . $conn->error . "\n";
 				exit;
-			}	
+			}
+			else {
+				$_SESSION["is_gold"] = 1;
+			}
 		}
 		$conn->close();
 		

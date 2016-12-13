@@ -1,9 +1,39 @@
 var greenBackground = "#558C89 !important";
 var otherBackground = "#D2B48C !important";
 
-function changeBackground() {
-	var n = $('.greenBackground').length;
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
 
+function changeBackground() {
+	/*var color = getCookie("backgroundColor");
+	
+	if (color == "other") {
+		$('.otherBackground').each(function(index) {
+			$(this).removeClass('otherBackground');
+			$(this).addClass('greenBackground');
+		});
+		document.cookie = "backgroundColor=green";
+	} else {
+		$('.greenBackground').each(function(index) {
+			$(this).removeClass('greenBackground');
+			$(this).addClass('otherBackground');
+		});
+		document.cookie = "backgroundColor=other";
+	}*/
+
+	var n = $('.greenBackground').length;
 	if (n === 0) {
 		$('.otherBackground').each(function(index) {
 			$(this).removeClass('otherBackground');
@@ -17,7 +47,7 @@ function changeBackground() {
 	}
 
 }
-
+/*
 function setBackground(color) {
 	if (color === "green") {
 		$('.modal-header, .modal-footer').each(function(index) {
@@ -25,7 +55,7 @@ function setBackground(color) {
 			$(this).removeClass('otherBackground');
 		});
 	}
-}
+}*/
 
 function showAboutModal() {
 	$("#AboutModal").show();
@@ -43,7 +73,6 @@ function closeAboutModal() {
 
 
 $(document).ready(function() {
-
 	//THIS IS TO SOLVE AN ANNOYING BUG WHERE JQUERY.LOAD CACHES DATA AND
 	//THE CHANGES YOU MAKE DON'T APPEAR
 	$.ajaxSetup({
@@ -200,5 +229,5 @@ $(document).ready(function() {
 	$("#chartInfoModal").load("chartInfoModal.html", function() {
 		runChartInfoEventHandlers();
 	});
-
 });
+
