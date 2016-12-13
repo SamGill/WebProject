@@ -34,15 +34,13 @@ session_start();
 			</div>
 			<div class="modal-footer greenBackground">
 				<div class="row">
-					<div class="col-sm-2 text-center">
-						<footer style="float:left">
-							<a id="changePasswordLink">Change Password </a>
-						</footer>
-					</div>
 					<div class="col-sm-8 text-center">
-						<button type="button" class="btn btn-warning center-block closeAccount">
+						<button type="button" style="margin-bottom: 2%; font-size: 1.1em;" class="btn btn-warning center-block closeAccount">
 							Close
 						</button>
+					</div>
+					<div class="col-sm-2 text-center">
+						<a id="changePasswordLink">Change Password</a>
 					</div>
 				</div>
 			</div>
@@ -77,7 +75,7 @@ session_start();
 		<div class="modal-footer greenBackground">
 			<div class="row">
 				<div class="col-sm-6 text-center">
-					<button type="button" class="btn btn-warning center-block" id="btn-cancel-reset-password">
+					<button type="button" style="width: 6em; margin-bottom: 1%;" class="btn btn-warning center-block" id="btn-cancel-reset-password">
 						Back
 					</button>
 				</div>
