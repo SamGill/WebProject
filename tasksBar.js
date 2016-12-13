@@ -140,7 +140,7 @@ function runTaskBarEventHandlers() {
 	});
 
 	$("#btn-addTask").on("click", function() {
-		if(tasks.length < 6) {
+		if(tasks.length < 26) {
 			$("#addTaskDialog").dialog("open");
 		}
 		else {
