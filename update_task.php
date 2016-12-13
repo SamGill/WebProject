@@ -42,6 +42,11 @@
 			exit;
 		}
 		
+		if($progress_hours >= $total_hours){
+			echo "progress_hours greater than or equal to total_hours.";
+			exit;
+		}
+		
 		$sql = "UPDATE `tasks`
 				SET `goal_date`='" . $goal_date . "', ";
 		$sql .= "`title`='" . $title . "', ";

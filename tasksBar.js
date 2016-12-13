@@ -177,7 +177,9 @@ function runTaskBarEventHandlers() {
 		$("#update-f-name").val(name);
 		$("#update-f-date").val(goal_date);
 		$("#update-f-time").val(time);
-		$("#update-f-progress").val(hours_completed);		
+		$("#update-f-progress").val(hours_completed);
+		
+		$("#update-f-progress").max(hours_completed);	
 	});
 
 	$("#btn-closeAddTask").on("click", function() {

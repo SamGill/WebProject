@@ -35,7 +35,8 @@ function pushTask(name, time, entry_date, goal_date){
 	    		"entry_date": formatDate(entry_date),
 	    		"goal_date": formatDate(goal_date)},
 	    success: function(response) { 
-	    	console.log(response);
+	    	if(response != "")
+	    		alert(response);
 			getTasks();
 	    },
 	    failure: function(response) { alert("Could not connect to Server!");}
@@ -53,7 +54,8 @@ function updateTask(name, time, entry_date, goal_date, task_id, hours_completed)
 	    		"entry_date": formatDate(entry_date),
 	    		"goal_date": formatDate(goal_date)},
 	    success: function(response) { 
-	    	console.log(response);
+	    	if(response != "")
+	    		alert(response);
 			getTasks();
 	    },
 	    failure: function(response) { alert("Could not connect to Server!");}

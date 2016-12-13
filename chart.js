@@ -133,9 +133,11 @@ function chartBoxClick(box){
 	
 	var taskName = tasks[parentNum].title;
 	var hoursToday = tasks[parentNum].getDailyTime(new Date());
+	var hoursTotal = tasks[parentNum].getTime();
 	var percentComplete = 100 * tasks[parentNum].progress_hours / tasks[parentNum].total_hours;
 	var goal_date = easyReadingFormattedDate(tasks[parentNum].goal_date);
 	$("#chartDialog_hoursToday").text(hoursToday.toFixed(2));
+	$("#chartDialog_hoursTotal").text(hoursTotal);
 	$("#chartDialog_percentComp").text(percentComplete.toFixed(2));
 	$("#chartDialog_goalDate").text(goal_date);
 	
