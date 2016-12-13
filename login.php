@@ -18,9 +18,9 @@
 		if($_POST['username'] === ''){
 			array_push($errors, "Username field empty.");
 		}
-		else if(!ctype_alnum ($_POST['username'])){
+		/*else if(!ctype_alnum ($_POST['username'])){
 			array_push($errors, "Username not valid, letters and numbers only.");
-		}
+		}*/
 		
 		//check the password
 		if($_POST['password'] === ''){
@@ -47,17 +47,24 @@
 			} 
 			
 			$sql = "SELECT * FROM accounts WHERE username='" . strtolower($_POST['username']) . "'";
+			$sqlEmail = "SELECT * FROM accounts WHERE email='" . strtolower($_POST['username']) . "'";
+			
 			$result = $conn->query($sql);
+			$resultEmail = $conn->query($sqlEmail);
 			
 			if ($result === FALSE) {
     			array_push($errors, "Failed to connect to the database");
+			}	
+			else if ($result->num_rows == 0 && $resultEmail->num_rows == 0) {
+			    array_push($errors, "Account not found.");
 			}
-			else if ($result->num_rows == 0) {
-			    array_push($errors, "Username not found.");
-			}
-			else{
+			else{					
+				
 				$row = $result->fetch_assoc();
-
+				if ($result->num_rows == 0) {
+					$row = $resultEmail->fetch_assoc();
+				}
+				
 				//echo $row['name'];
 				if(password_verify($_POST['password'], $row['password'])) {//check if the passwords match
 					// Set session variables
@@ -70,7 +77,7 @@
 					exit;
 				}
 				else {//bad password
-					array_push($errors, "Username and password do not match.");
+					array_push($errors, "Username/email and password do not match.");
 				}
 			}
 		}
