@@ -69,6 +69,7 @@ function updateGraph() {
         seriesBarDistance: 100,
 		width: '100%',
 		height: '100%',
+		stackBars: true,
 		axisY : {
 			labelInterpolationFnc : function(value) {
 				return value;
