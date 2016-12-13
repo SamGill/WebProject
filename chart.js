@@ -139,20 +139,30 @@ function chartBoxClick(box){
 	$("#chartDialog_percentComp").text(percentComplete.toFixed(2));
 	$("#chartDialog_goalDate").text(goal_date);
 	
+	
+	$("#chartDialog").show();
+	$("#charDialog_taskName").text(taskName);
+	
+	/*
 	$("#chartDialog").dialog({
 		autoOpen : false,
 		modal : true,
 		"title" : taskName
 	});
-	$("#chartDialog").dialog("open");
+	$("#chartDialog").dialog("open");*/
 }
 
 function runChartInfoEventHandlers(){
 	//$("#chartDialog").toggle();
-	$("#chartDialog").dialog({
+	/*$("#chartDialog").dialog({
 		autoOpen : false,
 		modal : true,
 		"title" : "1"
+	});*/
+	
+	
+	$("#closeChartDialog").on('click', function() {
+		$('#chartDialog').hide();
 	});
 }
 

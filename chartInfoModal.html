@@ -1,5 +1,37 @@
-<div id="chartDialog" title="">
-	<div>Hours to work today: <span id="chartDialog_hoursToday" class="chartDialogValues"></span></div>
-	<div><span id="chartDialog_percentComp" class="chartDialogValues"></span>% complete!</div>
-	<div>Due date: <span id="chartDialog_goalDate" class="chartDialogValues"></span></div>
+<!--<div id="chartDialog" title="">
+<div>
+Hours to work today: <span id="chartDialog_hoursToday" class="chartDialogValues"></span>
+</div>
+<div>
+<span id="chartDialog_percentComp" class="chartDialogValues"></span>% complete!
+</div>
+<div>
+Due date: <span id="chartDialog_goalDate" class="chartDialogValues"></span>
+</div>
+</div> -->
+
+<div class="modal" id="chartDialog">
+	<div class="modal-content">
+		<div class="modal-header greenBackground">
+			<span id='closeChartDialog' class="close">&times; </span>
+			<h2 id="charDialog_taskName"></h2>
+		</div>
+		<div class="modal-body">
+			<center>
+				<h3> Hours to work today: <span id="chartDialog_hoursToday" class="chartDialogValues"></span></h3>
+			</center>
+
+			<center>
+				<h3>
+				<span id="chartDialog_percentComp" class="chartDialogValues"></span>% complete!	
+				</h3>
+			</center>
+			<center>
+				<h3>
+				Due date: <span id="chartDialog_goalDate" class="chartDialogValues"></span>	
+				</h3>
+			</center>
+		</div>
+		<div class="modal-footer greenBackground"></div>
+	</div>
 </div>

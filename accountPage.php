@@ -13,14 +13,22 @@ session_start();
 			</div>
 			<div class="modal-body">
 				<center>
+					<h3>
 					Hello, <strong> <?php
 					echo($_SESSION["username"]);
 					?></strong>!
+					</h3>
 				</center>
-				<center id="tasks-completed">
+				
+				<center >
+				<h3 id="tasks-completed">
 					
+				</h3>	
 				</center>
-				<center id="account-gold-section">
+				<center >
+					<h3 id="account-gold-section">
+						
+					</h3>
 					
 				</center>
 			</div>
